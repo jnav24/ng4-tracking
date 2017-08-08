@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import './assets/base/imports';
+
+body, html {
+	font: {
+	    family: 'Open Sans', sans-serif;
+	    size: 16px;
+	};
+}
+
+.mat-focused .mat-input-placeholder {
+  color: $primary !important;
+}
+
+.mat-option.mat-selected.mat-primary,.mat-primary .mat-option.mat-selected{
+  color: #fff !important;
+}
+
+.mat-input-underline .mat-input-ripple {
+	background: $primary;
+}
