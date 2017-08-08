@@ -1,0 +1,10 @@
+@import '../../../assets/base/imports';
+
+nav {
+	background: $primary;
+	color: #efefef;
+	// height: 60px;
+	padding: 20px;
+	width: 100%;
+	@include box-sizing(border-box);
+}

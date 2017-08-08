@@ -23,12 +23,14 @@ import { SignInService } from './sign-in/sign-in.service';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardNavComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
