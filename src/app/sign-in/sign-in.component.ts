@@ -41,7 +41,8 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   ]
 })
 export class SignInComponent implements OnInit {
-  error: string = '';
+  log_error: string = '';
+  reg_error: string = '';
   isLogin: boolean;
   log_in: FormGroup;
   sign_up: FormGroup;
@@ -102,7 +103,7 @@ export class SignInComponent implements OnInit {
           });  
         })
         .catch(error => {
-          this.error = error.message;
+          this.reg_error = error.message;
         });
   }
 
@@ -115,7 +116,7 @@ export class SignInComponent implements OnInit {
             });  
         })
         .catch(error => {
-          this.error = error.message;
+          this.log_error = error.message;
         });
   }
 

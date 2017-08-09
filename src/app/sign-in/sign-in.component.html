@@ -6,8 +6,8 @@
          [@animateSwitchForm]="animateLoginSwitchState"
          [@animateFadeForm]="animateLoginFadeState"
          [formGroup]="log_in">
-      <div class="error" *ngIf="error.length">
-        {{ error }}
+      <div class="error" *ngIf="log_error.length">
+        {{ log_error }}
       </div>
       <md-input-container class="fw-full">
         <input mdInput placeholder="Email" formControlName="email">
@@ -33,8 +33,8 @@
          [@animateSwitchForm]="animateSigninSwitchState"
          [@animateFadeForm]="animateSigninFadeState"
          [formGroup]="sign_up">
-      <div class="error" *ngIf="error.length">
-        {{ error }}
+      <div class="error" *ngIf="reg_error.length">
+        {{ reg_error }}
       </div>
       <md-input-container class="fw-full">
         <input mdInput placeholder="First Name" formControlName="first_name">
