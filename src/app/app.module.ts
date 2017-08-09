@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
 // providers
@@ -45,6 +45,8 @@ import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.c
     MdMenuModule, 
     MdToolbarModule, 
     MdIconModule,
+    MdListModule,
+    MdGridListModule,
     RouterModule.forRoot(RouterConfig),
     ReactiveFormsModule
   ],

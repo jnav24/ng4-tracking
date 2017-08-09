@@ -8,3 +8,18 @@ nav {
 	width: 100%;
 	@include box-sizing(border-box);
 }
+
+.navbar {
+	background: $primary;
+	color: #fff;
+
+	span {
+		font-weight: 300;
+	}
+
+	@include resizeMaterialIcon(32px);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

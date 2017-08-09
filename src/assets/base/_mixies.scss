@@ -1,2 +1,26 @@
-$primary: #43464B;
+$primary: #009688;
+$secondary: #FF9800;
+$lte_grey: #ecf0f1;
+
+$colors: (
+	primary: #009688,
+	secondary: #FF9800,
+	lite_grey: #ecf0f1
+);
+
 $navHeight: 65px;
+
+@mixin resizeMaterialIcon($size: 24px) {
+	.material-icons {
+		font-size: $size;
+	}
+
+	.mat-icon {
+		height: $size;
+		width: $size;
+	}
+
+	.mat-icon-button .mat-icon, .mat-icon-button i {
+		line-height: $size;
+	}
+}

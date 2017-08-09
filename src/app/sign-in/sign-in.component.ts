@@ -95,7 +95,6 @@ export class SignInComponent implements OnInit {
                 this.sign_up.value.first_name,
                 this.sign_up.value.last_name,
                 '',
-                '',
                 true,
                 token
             ), auth.uid);

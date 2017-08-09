@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 @import './assets/base/imports';
@@ -16,6 +17,10 @@ body {
 	background: #efefef;
 }
 
+.mat-card {
+	margin-bottom: 30px
+}
+
 .mat-focused .mat-input-placeholder {
   color: $primary !important;
 }
@@ -26,4 +31,16 @@ body {
 
 .mat-input-underline .mat-input-ripple {
 	background: $primary;
+}
+
+section {
+	&.container {
+		padding-top: 30px;
+		text-align: center;
+
+		article {
+			margin: 0 auto;
+			width: 1000px;
+		}
+	}
 }
