@@ -6,8 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+	heroes = [];
+	hero_headers: string[] = [];	
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {}
+	ngOnInit() {
+		this.hero_headers = [
+			'ID',
+			'Name',
+			'Action'
+		];
+	}
 }

@@ -1,7 +1,7 @@
 @import '../../assets/base/imports';
 
 .container {
-  background: $primary;
+  background: map-get($colors,primary);
   height: 100%;
   left: 0;
   position: absolute;
@@ -30,7 +30,7 @@
   @include posa(50px,n,n,0);
 
   button {
-    background: $primary;
+    background: map-get($colors,primary);
     color: #fff;
     font-weight: 300;
     padding: 7px 0;
@@ -42,7 +42,7 @@
 }
 
 .copy {
-  background: $primary;
+  background: map-get($colors,primary);
   color: #fff;
   font-size: 13px;
   text-align: center;
@@ -51,7 +51,7 @@
 
   a, button {
     border: 0;
-    color: darken($primary, 20%);
+    color: darken(map-get($colors,primary), 20%);
     text-decoration: none;
 
     &:hover {
