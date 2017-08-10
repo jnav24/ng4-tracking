@@ -17,6 +17,8 @@
         <input mdInput placeholder="Password" type="password" formControlName="password">
       </md-input-container>
 
+      <md-checkbox class="login">Remember me</md-checkbox>
+
       <button md-raised-button class="fw-full"
               [ngClass]="{'disabled': !log_in.valid}"
               (click)="login()"

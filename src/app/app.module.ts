@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule } from '@angular/material';
+import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule, MdCheckboxModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
 // providers
@@ -51,6 +51,7 @@ import { DialogClientsComponent } from './dialog-clients/dialog-clients.componen
     MdGridListModule,
     MdDialogModule,
     MdTooltipModule,
+    MdCheckboxModule,
     RouterModule.forRoot(RouterConfig),
     ReactiveFormsModule
   ],
