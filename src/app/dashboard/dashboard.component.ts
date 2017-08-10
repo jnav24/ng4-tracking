@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component";
+import {Clients} from '../common/models/clients.model';
+import {ClientsService} from '../common/services/clients.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,39 +11,24 @@ import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-	heroes = [];
+	clients: Clients[] = [];
 	client_table_headers: string[] = [];
-	table_keys: string[];
 
-	constructor(private dialog: MdDialog) {}
+	constructor(private dialog: MdDialog, private clientsService: ClientsService, private route: ActivatedRoute) {}
 
 	ngOnInit() {
-		// this.heroes = [
-		// 	{
-		// 		id: '1',
-		// 		name: 'Batman',
-		// 		description: 'I am batman!'
-		// 	},
-		// 	{
-		// 		id: '2',
-		// 		name: 'Superman',
-		// 		description: ''
-		// 	}
-		// ];
-
 		this.client_table_headers = [
 			'id',
 			'name',
 			'description',
 		];
 
-		// this.table_keys = Object.keys(this.heroes[0]);
-		// console.log(this.table_keys);
+		this.clientsService.getAllClients(this.route.snapshot.params['uid']);
 	}
 
 	openDialog() {
 		this.dialog.open(DialogClientsComponent, {
-			height: '400px',
+			height: '370px',
 			width: '600px',
 		});
 	}

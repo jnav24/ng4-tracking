@@ -23,7 +23,7 @@ body {
 
 .success {
 	background-color: map-get($colors, success) !important;
-	color: #fff;
+	color: #fff !important;
 }
 
 .flex {

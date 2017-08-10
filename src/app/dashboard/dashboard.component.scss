@@ -1,7 +1,5 @@
 @import '../../assets/base/imports';
 
-@include resetMdButton();
-
 .mat-grid-list {
 	margin-bottom: 15px;
 
@@ -68,6 +66,7 @@
 
 .mat-card-title {
 	color: map-get($colors, mid_grey);
+	font-weight: 300;
 }
 
 .empty-state {

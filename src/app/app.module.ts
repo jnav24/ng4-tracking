@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule, MdCheckboxModule } from '@angular/material';
+import { MdInputModule, MdSelectModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule, MdCheckboxModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
 // providers
@@ -17,7 +17,8 @@ import {RouterConfig} from './config/router.config';
 import firebaseConfig from './config/firebase.config';
 
 // services
-import { SignInService } from './sign-in/sign-in.service'; 
+import { SignInService } from './sign-in/sign-in.service';
+import { ClientsService } from './common/services/clients.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -42,12 +43,13 @@ import { CapitalizePipe } from './capitalize.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MdInputModule, 
-    MdRippleModule, 
-    MdButtonModule, 
-    MdCardModule, 
-    MdMenuModule, 
-    MdToolbarModule, 
+    MdInputModule,
+    MdSelectModule,
+    MdRippleModule,
+    MdButtonModule,
+    MdCardModule,
+    MdMenuModule,
+    MdToolbarModule,
     MdIconModule,
     MdListModule,
     MdGridListModule,
@@ -63,7 +65,8 @@ import { CapitalizePipe } from './capitalize.pipe';
   providers: [
     AngularFireDatabase,
     AngularFireAuth,
-    SignInService
+    SignInService,
+    ClientsService,
   ],
   bootstrap: [AppComponent]
 })
