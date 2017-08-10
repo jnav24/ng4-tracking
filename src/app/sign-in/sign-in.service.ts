@@ -40,6 +40,11 @@ export class SignInService {
     return this.auth.auth.signOut();
   }
 
+  setRememberMe(uid) {
+    const user = this.af.object(`users/${uid}`);
+    return user.update({ remember_me: true });  
+  }
+
   saveToken(token, uid) {
     const user = this.af.object(`users/${uid}`);
     return user.update({ token: token});  
@@ -66,7 +71,7 @@ export class SignInService {
 
       this.getUser(user.uid).subscribe(user_data => {
         user.getToken().then(token => {
-          if (token != user_data.token) {
+          if (token != user_data.token && !user_data.remember_me) {
             this.logOutAndRedirect();
           }          
         });
