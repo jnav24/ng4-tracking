@@ -3,39 +3,37 @@
 <section class="container">
 	<article>
 		<md-grid-list cols="3" rowHeight="2:1" gutterSize="21px">
-			<md-grid-tile class="daily">
+			<md-grid-tile class="card-style daily">
 				<md-grid-tile-header>Total Hours Today</md-grid-tile-header>
 				<span>0</span>
 			</md-grid-tile>
-			<md-grid-tile class="weekly">
+			<md-grid-tile class="card-style weekly">
 				<md-grid-tile-header>Total Hours This Week</md-grid-tile-header>
 				<span>0</span>
 			</md-grid-tile>
-			<md-grid-tile class="uninvoiced">
+			<md-grid-tile class="card-style uninvoiced">
 				<md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
 				<span>$0.00</span>
 			</md-grid-tile>
 		</md-grid-list>
 
 		<md-card>
-			<button md-icon-button>
-				<md-icon class="md-24">favorite</md-icon>
-			</button>
-		</md-card>
+			<md-card-title class="text-left flex">
+				<span>Clients</span>
+				<span class="flex-spacer"></span>
+				<button md-mini-fab class="success">
+					<md-icon class="md-24">add</md-icon>
+				</button>
+			</md-card-title>
 
-		<md-card>
-			<button md-fab>
-				<md-icon class="md-24">add</md-icon>
-			</button>
-
-			<button md-mini-fab>
-				<md-icon class="md-24">add</md-icon>
-			</button>
-		</md-card>
-
-		<md-card>
-			<md-grid-list class="header" [cols]="hero_headers.length" rowHeight="24" >
+			<md-grid-list class="table-header" [cols]="hero_headers.length" rowHeight="24" >
 				<md-grid-tile *ngFor="let header of hero_headers">{{ header }}</md-grid-tile>
+			</md-grid-list>
+
+			<md-grid-list class="table-content" *ngFor="let hero of heroes" [cols]="hero_headers.length" rowHeight="24" >
+				<md-grid-tile>{{ hero.id }}</md-grid-tile>
+				<md-grid-tile>{{ hero.name }}</md-grid-tile>
+				<md-grid-tile>{{ hero.id }}</md-grid-tile>
 			</md-grid-list>
 		</md-card>
 
@@ -43,6 +41,20 @@
 			<button md-raised-button color="primary">primary</button>
 			<button md-raised-button color="accent">accent</button>
 			<button md-raised-button color="warn">warn</button>
+		</md-card>
+
+		<md-card>
+			<button md-icon-button>
+				<md-icon class="md-24">favorite</md-icon>
+			</button>
+
+			<button md-fab>
+				<md-icon class="md-24">add</md-icon>
+			</button>
+
+			<button md-mini-fab>
+				<md-icon class="md-24">add</md-icon>
+			</button>
 		</md-card>
 	</article>
 </section>

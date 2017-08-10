@@ -17,6 +17,23 @@ body {
 	background: #efefef;
 }
 
+.text-left {
+	text-align: left;
+}
+
+.success {
+	background-color: map-get($colors, success) !important;
+	color: #fff;
+}
+
+.flex {
+	display: flex !important;
+}
+
+.flex-spacer {
+	flex: 1 1 auto;
+}
+
 .mat-card {
 	margin-bottom: 30px
 }

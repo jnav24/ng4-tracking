@@ -12,6 +12,16 @@ export class DashboardComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+		this.heroes = [
+			{
+				id: '1',
+				name: 'Batman',
+			},
+			{
+				id: '2',
+				name: 'Superman',
+			}
+		];
 		this.hero_headers = [
 			'ID',
 			'Name',

@@ -1,7 +1,9 @@
 $colors: (
 	primary: #009688,
 	secondary: #FF9800,
-	lite_grey: #ecf0f1
+	lte_grey: #ecf0f1,
+	mid_grey: lighten(#000, 50%),
+	success: #2ecc71
 );
 
 $navHeight: 65px;
