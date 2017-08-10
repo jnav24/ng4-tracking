@@ -9,7 +9,8 @@ import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component
 })
 export class DashboardComponent implements OnInit {
 	heroes = [];
-	hero_headers: string[] = [];	
+	client_table_headers: string[] = [];
+	table_keys: string[];
 
 	constructor(private dialog: MdDialog) {}
 
@@ -18,17 +19,23 @@ export class DashboardComponent implements OnInit {
 			{
 				id: '1',
 				name: 'Batman',
+				description: 'I am batman!'
 			},
 			{
 				id: '2',
 				name: 'Superman',
+				description: ''
 			}
 		];
-		this.hero_headers = [
-			'ID',
-			'Name',
-			'Action'
+
+		this.client_table_headers = [
+			'id',
+			'name',
+			'description',
 		];
+
+		// this.table_keys = Object.keys(this.heroes[0]);
+		// console.log(this.table_keys);
 	}
 
 	openDialog() {
@@ -36,5 +43,9 @@ export class DashboardComponent implements OnInit {
 			height: '400px',
 			width: '600px',
 		});
+	}
+
+	clientSelection(id) {
+		alert('the id is... ' + id);
 	}
 }
