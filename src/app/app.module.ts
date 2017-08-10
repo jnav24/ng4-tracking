@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule } from '@angular/material';
+import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
 // providers
@@ -24,13 +24,15 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
+import { DialogClientsComponent } from './dialog-clients/dialog-clients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     DashboardComponent,
-    DashboardNavComponent
+    DashboardNavComponent,
+    DialogClientsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -47,9 +49,14 @@ import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.c
     MdIconModule,
     MdListModule,
     MdGridListModule,
+    MdDialogModule,
+    MdTooltipModule,
     RouterModule.forRoot(RouterConfig),
     ReactiveFormsModule
   ],
+    entryComponents: [
+        DialogClientsComponent
+    ],
   providers: [
     AngularFireDatabase,
     AngularFireAuth,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MdDialog} from '@angular/material';
+import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +11,7 @@ export class DashboardComponent implements OnInit {
 	heroes = [];
 	hero_headers: string[] = [];	
 
-	constructor() { }
+	constructor(private dialog: MdDialog) {}
 
 	ngOnInit() {
 		this.heroes = [
@@ -27,5 +29,12 @@ export class DashboardComponent implements OnInit {
 			'Name',
 			'Action'
 		];
+	}
+
+	openDialog() {
+		this.dialog.open(DialogClientsComponent, {
+			height: '400px',
+			width: '600px',
+		});
 	}
 }
