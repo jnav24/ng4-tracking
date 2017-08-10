@@ -22,5 +22,5 @@ nav {
 		font-weight: 300;
 	}
 
-	@include resizeMaterialIcon(32px);
+	@include resizeMaterialIconButton(32px);
 }

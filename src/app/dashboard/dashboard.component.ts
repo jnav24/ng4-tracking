@@ -15,18 +15,18 @@ export class DashboardComponent implements OnInit {
 	constructor(private dialog: MdDialog) {}
 
 	ngOnInit() {
-		this.heroes = [
-			{
-				id: '1',
-				name: 'Batman',
-				description: 'I am batman!'
-			},
-			{
-				id: '2',
-				name: 'Superman',
-				description: ''
-			}
-		];
+		// this.heroes = [
+		// 	{
+		// 		id: '1',
+		// 		name: 'Batman',
+		// 		description: 'I am batman!'
+		// 	},
+		// 	{
+		// 		id: '2',
+		// 		name: 'Superman',
+		// 		description: ''
+		// 	}
+		// ];
 
 		this.client_table_headers = [
 			'id',

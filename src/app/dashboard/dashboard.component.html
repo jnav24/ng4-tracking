@@ -26,15 +26,26 @@
 				</button>
 			</md-card-title>
 
-			<md-grid-list class="table-header" [cols]="client_table_headers.length+1" rowHeight="24" >
-				<md-grid-tile *ngFor="let header of client_table_headers">{{ header | capitalize }}</md-grid-tile>
-				<md-grid-tile>Action</md-grid-tile>
-			</md-grid-list>
+			<div *ngIf="heroes.length">
+				<md-grid-list class="table-header" [cols]="client_table_headers.length+1" rowHeight="24" >
+					<md-grid-tile *ngFor="let header of client_table_headers">{{ header | capitalize }}</md-grid-tile>
+					<md-grid-tile>Action</md-grid-tile>
+				</md-grid-list>
 
-			<md-grid-list class="table-content" (click)="clientSelection(hero.id)" *ngFor="let hero of heroes" [cols]="client_table_headers.length+1" rowHeight="24" >
-				<md-grid-tile *ngFor="let value of client_table_headers">{{ hero[value] }}</md-grid-tile>
-				<md-grid-tile></md-grid-tile>
-			</md-grid-list>
+				<md-grid-list class="table-content" (click)="clientSelection(hero.id)" *ngFor="let hero of heroes" [cols]="client_table_headers.length+1" rowHeight="24" >
+					<md-grid-tile *ngFor="let value of client_table_headers">{{ hero[value] }}</md-grid-tile>
+					<md-grid-tile></md-grid-tile>
+				</md-grid-list>
+			</div>
+
+			<div class="empty-state" *ngIf="!heroes.length">
+				<md-icon>remove_circle_outline</md-icon>
+				<p>You do not have clients.<br>Click on the
+					<button md-mini-fab class="success thumbnail">
+						<md-icon>add</md-icon>
+					</button>
+					button above to add a client.</p>
+			</div>
 		</md-card>
 
 		<md-card>

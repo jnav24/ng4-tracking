@@ -8,7 +8,7 @@ $colors: (
 
 $navHeight: 65px;
 
-@mixin resizeMaterialIcon($size: 24px) {
+@mixin resizeMaterialIconButton($size: 24px) {
 	.material-icons {
 		font-size: $size;
 	}
@@ -20,6 +20,15 @@ $navHeight: 65px;
 
 	.mat-icon-button .mat-icon, .mat-icon-button i {
 		line-height: $size;
+	}
+}
+
+@mixin resizeMaterialIcon($size: 24px) {
+	.mat-icon {
+		font-size: $size;
+		height: $size;
+		line-height: $size;
+		width: $size;
 	}
 }
 
