@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class SignInService {
   user: Observable<firebase.User>;
+  uid: string;
 
   constructor(private af: AngularFireDatabase, private auth: AngularFireAuth, private router: Router, private route: ActivatedRoute) {
     this.user = auth.authState;
@@ -42,12 +43,12 @@ export class SignInService {
 
   setRememberMe(uid) {
     const user = this.af.object(`users/${uid}`);
-    return user.update({ remember_me: true });  
+    return user.update({ remember_me: true });
   }
 
   saveToken(token, uid) {
     const user = this.af.object(`users/${uid}`);
-    return user.update({ token: token});  
+    return user.update({ token: token});
   }
 
   removeToken(uid) {
@@ -73,9 +74,11 @@ export class SignInService {
         user.getToken().then(token => {
           if (token != user_data.token && !user_data.remember_me) {
             this.logOutAndRedirect();
-          }          
+          }
         });
       });
+
+      this.uid = user.uid;
     });
   }
 }

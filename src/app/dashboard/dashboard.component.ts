@@ -3,7 +3,6 @@ import {MdDialog} from '@angular/material';
 import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component";
 import {Clients} from '../common/models/clients.model';
 import {ClientsService} from '../common/services/clients.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +10,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-	clients: Clients[] = [];
+	clients: Clients[];
 	client_table_headers: string[] = [];
 
-	constructor(private dialog: MdDialog, private clientsService: ClientsService, private route: ActivatedRoute) {}
+	constructor(
+	    private dialog: MdDialog,
+        private clientsService: ClientsService,
+    ) {}
 
 	ngOnInit() {
 		this.client_table_headers = [
@@ -23,7 +25,9 @@ export class DashboardComponent implements OnInit {
 			'description',
 		];
 
-		this.clientsService.getAllClients(this.route.snapshot.params['uid']);
+        this.clientsService.clients.subscribe(clients => {
+            this.clients = clients;
+        });
 	}
 
 	openDialog() {

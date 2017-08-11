@@ -26,19 +26,23 @@
 				</button>
 			</md-card-title>
 
-			<div *ngIf="clients.length">
+			<div *ngIf="clients?.length">
 				<md-grid-list class="table-header" [cols]="client_table_headers.length+1" rowHeight="24" >
 					<md-grid-tile *ngFor="let header of client_table_headers">{{ header | capitalize }}</md-grid-tile>
 					<md-grid-tile>Action</md-grid-tile>
 				</md-grid-list>
 
-				<md-grid-list class="table-content" (click)="clientSelection(hero.id)" *ngFor="let client of clients" [cols]="client_table_headers.length+1" rowHeight="24" >
+				<md-grid-list
+						class="table-content"
+						(click)="clientSelection(client.id)"
+						*ngFor="let client of clients"
+						[cols]="client_table_headers.length+1" rowHeight="24" >
 					<md-grid-tile *ngFor="let value of client_table_headers">{{ client[value] }}</md-grid-tile>
 					<md-grid-tile></md-grid-tile>
 				</md-grid-list>
 			</div>
 
-			<div class="empty-state" *ngIf="!clients.length">
+			<div class="empty-state" *ngIf="!clients?.length">
 				<md-icon>remove_circle_outline</md-icon>
 				<p>You do not have clients.<br>Click on the
 					<button md-mini-fab class="success thumbnail">
