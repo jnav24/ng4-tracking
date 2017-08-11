@@ -34,7 +34,7 @@
 
 				<md-grid-list
 						class="table-content"
-						(click)="clientSelection(client.id)"
+						(click)="clientSelection(client.$key)"
 						*ngFor="let client of clients"
 						[cols]="client_table_headers.length+1" rowHeight="24" >
 					<md-grid-tile *ngFor="let value of client_table_headers">{{ client[value] }}</md-grid-tile>

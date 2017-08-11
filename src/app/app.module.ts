@@ -27,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
 import { DialogClientsComponent } from './dialog-clients/dialog-clients.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { DashboardProjectsComponent } from './dashboard/dashboard-projects/dashboard-projects.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CapitalizePipe } from './capitalize.pipe';
     DashboardComponent,
     DashboardNavComponent,
     DialogClientsComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    DashboardProjectsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

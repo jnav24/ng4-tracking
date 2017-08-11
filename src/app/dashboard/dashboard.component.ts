@@ -38,6 +38,6 @@ export class DashboardComponent implements OnInit {
 	}
 
 	clientSelection(id) {
-		alert('the id is... ' + id);
+		this.clientsService.navigateToClientProjects(id);
 	}
 }

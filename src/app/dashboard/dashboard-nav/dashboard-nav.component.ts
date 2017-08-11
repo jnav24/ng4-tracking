@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {SignInService} from '../../sign-in/sign-in.service';
 
 @Component({
@@ -9,10 +9,14 @@ import {SignInService} from '../../sign-in/sign-in.service';
 })
 export class DashboardNavComponent implements OnInit {
 
-  constructor(private signInService: SignInService, private router: Router) { }
+  constructor(
+      private signInService: SignInService,
+      private route: ActivatedRoute,
+      private router: Router) { }
 
   ngOnInit() {
-    this.signInService.authLogin();
+    const uid = this.route.snapshot.params['uid'];
+    this.signInService.authLogin(uid);
   }
 
   logOut() {

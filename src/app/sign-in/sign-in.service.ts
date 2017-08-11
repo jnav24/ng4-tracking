@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {AngularFireAuth} from "angularfire2/auth";
 import {Observable} from "rxjs";
@@ -11,8 +11,11 @@ export class SignInService {
   user: Observable<firebase.User>;
   uid: string;
 
-  constructor(private af: AngularFireDatabase, private auth: AngularFireAuth, private router: Router, private route: ActivatedRoute) {
-    this.user = auth.authState;
+  constructor(
+      private af: AngularFireDatabase,
+      private auth: AngularFireAuth,
+      private router: Router) {
+      this.user = auth.authState;
   }
 
   addUser(user: Users, uid: string) {
@@ -60,13 +63,13 @@ export class SignInService {
     return this.af.object(`/users/${uid}`);
   }
 
-  authLogin() {
+  authLogin(param_uid) {
     this.user.subscribe(user => {
       if (user === null) {
         this.router.navigate(['login']);
       }
 
-      if (user.uid !== this.route.snapshot.params['uid']) {
+      if (user.uid !== param_uid) {
         this.router.navigate(['dashboard', user.uid]);
       }
 

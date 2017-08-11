@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
 import {ClientsService} from "../common/services/clients.service";
 import {SignInService} from "../sign-in/sign-in.service";
 
@@ -14,8 +13,6 @@ export class DialogClientsComponent implements OnInit {
 
     constructor(
         private form: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
         private clientsService: ClientsService,
         private signinService: SignInService
     ) {}
@@ -31,8 +28,11 @@ export class DialogClientsComponent implements OnInit {
         this.clientsService.addClient(
             this.signinService.uid,
             this.new_client.value.company_name,
-            this.new_client.value.company_description).then(result => {
-            console.log(result.key);
+            this.new_client.value.company_description)
+        .then(result => {
+            if (typeof result.key !== 'undefined') {
+                this.clientsService.navigateToClientProjects(result.key);
+            }
         }).catch(e => {
             console.log(e)
         });
