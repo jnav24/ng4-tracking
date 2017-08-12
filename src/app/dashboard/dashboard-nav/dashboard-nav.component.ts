@@ -23,4 +23,7 @@ export class DashboardNavComponent implements OnInit {
   	this.signInService.logOutAndRedirect();
   }
 
+  navigateToClientsPage() {
+      this.router.navigate(['dashboard', this.signInService.uid]);
+  }
 }

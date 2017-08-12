@@ -3,13 +3,18 @@
 	<span>TimeFox</span>
 
     <span class="flex-spacer"></span>
-    
+
+	<button md-button class="fw-t" (click)="navigateToClientsPage()">Clients</button>
+	<button md-button class="fw-t">Invoice</button>
+
+    <span class="flex-spacer"></span>
+
     <md-menu #appMenu="mdMenu" [overlapTrigger]="false">
 		<button md-menu-item>Profile</button>
 		<button md-menu-item>Settings</button>
 		<button md-menu-item (click)="logOut()">Logout</button>
 	</md-menu>
-	
+
 	<button md-icon-button [mdMenuTriggerFor]="appMenu">
    		<md-icon>account_circle</md-icon>
 	</button>
