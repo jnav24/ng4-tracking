@@ -2,6 +2,55 @@
 
 <section class="container">
     <article>
-        tuts
+        <div class="col">
+            <div class="card-style logo-drop">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="assets/images/logo-placeholder-1.png" alt="">
+                    </div>
+                </div>
+
+                <h3>Client Name</h3>
+
+                <div class="client-info">
+                    <md-icon>place</md-icon>
+                    <p>7655 NW 19th Court</p>
+                    <p>Pembroke Pines, FL 33024</p>
+                </div>
+
+                <div class="client-info">
+                    <md-icon>local_phone</md-icon>
+                    <p>954 665-9421</p>
+                </div>
+
+                <div class="client-info">
+                    <md-icon>local_post_office</md-icon>
+                    <p>tuts@ilovetuts.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card-style">
+                <h2 class="section-heading">
+                    Projects
+
+                    <span class="flex-spacer"></span>
+
+                    <button md-mini-fab class="success" (click)="openDialog()" mdTooltip="Add Client" mdTooltipPosition="left">
+                        <md-icon class="md-24">add</md-icon>
+                    </button>
+                </h2>
+
+                <div class="empty-state" *ngIf="!clients?.length">
+                    <md-icon>remove_circle_outline</md-icon>
+                    <p>You do not have projects.<br>Click on the
+                        <button md-mini-fab class="success thumbnail">
+                            <md-icon>add</md-icon>
+                        </button>
+                        button above to add a project.</p>
+                </div>
+            </div>
+        </div>
     </article>
 </section>

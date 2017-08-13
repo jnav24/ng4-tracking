@@ -22,5 +22,9 @@ nav {
 		font-weight: 300;
 	}
 
+	.mat-button.fw-t {
+		font-size: 18px;
+	}
+
 	@include resizeMaterialIconButton(32px);
 }

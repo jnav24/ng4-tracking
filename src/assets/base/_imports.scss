@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 @import './prefixMixies';
 @import './normalize';
 @import './mixies';
+@import './md-overwrites';
 
+@import '../layout/empty-state';
 @import '../layout/form';
+@import '../layout/material-elements';
+@import '../layout/md-grid-list';
 
 @include resetMdButton();

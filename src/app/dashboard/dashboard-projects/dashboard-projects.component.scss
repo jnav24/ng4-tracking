@@ -1,0 +1,70 @@
+@import '../../../assets/base/imports';
+$logo: 125px;
+
+.col {
+    padding-right: 20px;
+    @include box-sizing(border-box);
+    @include colgriduneven(8, 2, true, 2);
+
+    &:first-of-type {
+        .card-style {
+            padding-top: 65px;
+        }
+    }
+}
+
+.card-style {
+    margin-top: 65px;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.logo-container {
+    text-align: center;
+    width: 100%;
+    @include box-sizing(border-box);
+    @include posa(-#{($logo/2)}, n, n, 0);
+
+    .logo {
+        margin: 0 auto;
+        overflow: hidden;
+        @include box-shadow((0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12)));
+        @include circle($logo, #fff);
+    }
+
+    img {
+        min-height: 100%;
+        width: 100%;
+    }
+}
+
+h3 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.client-info {
+    color: map-get($colors, mid_grey);
+    margin-top: 30px;
+    padding-left: 40px;
+    position: relative;
+
+    &:last-of-type {
+        margin-bottom: 20px;
+    }
+
+    .mat-icon {
+        @include posa(0,n,n,0);
+    }
+
+    p {
+        font-size: 14px;
+        font-weight: 300;
+        margin: 0;
+    }
+}
+
+.section-heading {
+    display: flex;
+}

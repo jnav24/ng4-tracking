@@ -1,0 +1,24 @@
+.empty-state {
+    background: map-get($colors, lte_grey);
+    color: map-get($colors, mid_grey);
+    font-weight: 300;
+    padding: 50px;
+    text-align: center;
+
+    .mat-icon {
+        //color: map-get($colors, mid_grey);
+    }
+
+    .thumbnail {
+        $size: 28px;
+        height: $size;
+        width: $size;
+        @include resizeMaterialIcon(20px);
+
+        .mat-icon {
+            line-height: 15px;
+        }
+    }
+
+    @include resizeMaterialIcon(96px);
+}

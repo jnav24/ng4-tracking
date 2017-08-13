@@ -3,15 +3,6 @@
 .mat-grid-list {
 	margin-bottom: 15px;
 
-	&.card-style {
-		margin-bottom: 30px;
-
-		.mat-grid-tile {
-			background: #fff;
-			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-		}
-	}
-
 	.mat-grid-tile-header {
 		background: none;
 		color: map-get($colors, mid_grey);
@@ -35,60 +26,4 @@
 			font-size: 32px;
 		}
 	}
-}
-
-.table-header {
-	border-bottom: 1px solid map-get($colors, mid_grey);
-	color: lighten(#000, 75%);
-	font-size: 14px;
-}
-
-.table-content {
-	border-bottom: 1px solid map-get($colors, lte_grey);
-	color: map-get($colors, mid_grey);
-	cursor: pointer;
-	margin: 0;
-	padding-bottom: 15px;
-	@include transition(background-color ease 0.5s);
-
-	.mat-grid-tile {
-		padding-top: 15px;
-	}
-
-	&:last-of-type {
-		border-bottom: 0;
-	}
-
-	&:hover {
-		background-color: rgba(map-get($colors, secondary), 0.15);
-	}
-}
-
-.mat-card-title {
-	color: map-get($colors, mid_grey);
-	font-weight: 300;
-}
-
-.empty-state {
-	background: map-get($colors, lte_grey);
-	color: map-get($colors, mid_grey);
-	font-weight: 300;
-	padding: 50px;
-
-	.mat-icon {
-		//color: map-get($colors, mid_grey);
-	}
-
-	.thumbnail {
-		$size: 28px;
-		height: $size;
-		width: $size;
-		@include resizeMaterialIcon(20px);
-
-		.mat-icon {
-			line-height: 15px;
-		}
-	}
-
-	@include resizeMaterialIcon(96px);
 }
