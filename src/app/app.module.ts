@@ -19,6 +19,7 @@ import firebaseConfig from './config/firebase.config';
 // services
 import { SignInService } from './sign-in/sign-in.service';
 import { ClientsService } from './common/services/clients.service';
+import {ProjectsService} from "./common/services/projects.service";
 
 // components
 import { AppComponent } from './app.component';
@@ -69,6 +70,7 @@ import { DashboardProjectsComponent } from './dashboard/dashboard-projects/dashb
     AngularFireAuth,
     SignInService,
     ClientsService,
+    ProjectsService,
   ],
   bootstrap: [AppComponent]
 })

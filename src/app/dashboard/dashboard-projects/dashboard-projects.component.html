@@ -10,23 +10,33 @@
                     </div>
                 </div>
 
-                <h3>Client Name</h3>
+                <h3>{{ client?.name }}</h3>
 
-                <div class="client-info">
+                <p class="details">{{ client?.description }}</p>
+
+                <div class="client-info" *ngIf="client?.address">
                     <md-icon>place</md-icon>
                     <p>7655 NW 19th Court</p>
                     <p>Pembroke Pines, FL 33024</p>
                 </div>
 
-                <div class="client-info">
-                    <md-icon>local_phone</md-icon>
+                <div class="contactForm" *ngIf="showAddressForm && !client?.address">
+                    Hi address.
+                </div>
+
+                <button md-button *ngIf="!client?.address && !showAddressForm" class="std_button" (click)="toggleAddressForm()">Add Address</button>
+
+                <div class="client-info" *ngFor="let contact of client?.contact">
+                    <md-icon *ngIf="contact.type == 'email'">local_post_office</md-icon>
+                    <md-icon *ngIf="contact.type == 'phone'">local_phone</md-icon>
                     <p>954 665-9421</p>
                 </div>
 
-                <div class="client-info">
-                    <md-icon>local_post_office</md-icon>
-                    <p>tuts@ilovetuts.com</p>
+                <div class="contactForm" *ngIf="showContactForm && !client?.contact">
+                    Hi form.
                 </div>
+
+                <button md-button *ngIf="!client?.contact && !showContactForm" class="std_button" (click)="toggleContactForm()">Add Contact Info</button>
             </div>
         </div>
 

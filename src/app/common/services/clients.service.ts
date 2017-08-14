@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class ClientsService {
+    cid: string;
     clients: FirebaseListObservable<Clients[]>;
 
     constructor(
@@ -32,5 +33,10 @@ export class ClientsService {
 
     navigateToClientProjects(cid) {
         this.router.navigate([`dashboard/${this.signinService.uid}/${cid}`]);
+    }
+
+    getClientDetails() {
+        console.log(this.cid);
+        return this.af.object(`clients/${this.cid}`);
     }
 }
