@@ -30,7 +30,7 @@ import { DialogClientsComponent } from './dialog-clients/dialog-clients.componen
 import { DashboardProjectsComponent } from './dashboard/dashboard-projects/dashboard-projects.component';
 
 // pipes
-import { CapitalizePipe } from './capitalize.pipe';
+import { CapitalizePipe } from './common/pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [

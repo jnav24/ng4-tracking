@@ -10,38 +10,38 @@ import {ClientsService} from '../common/services/clients.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-	  clients: Clients[];
-	  client_table_headers: string[] = [];
+	clients: Clients[];
+	client_table_headers: string[] = [];
 
-	  constructor(
-	      private dialog: MdDialog,
-        private clientsService: ClientsService,
-    ) {}
+	constructor(
+	    private dialog: MdDialog,
+    	private clientsService: ClientsService,
+	) {}
 
-	  ngOnInit() {
-		    this.client_table_headers = [
-			      'id',
-			      'name',
-			      'description',
-		    ];
+	ngOnInit() {
+		this.client_table_headers = [
+			'id',
+			'name',
+			'description',
+		];
 
         this.clientsService.clients.subscribe(clients => {
             this.clients = clients;
         });
-	  }
+	}
 
-	  openDialog() {
-		    this.dialog.open(DialogClientsComponent, {
-			      height: '370px',
-			      width: '600px',
-		    });
-	  }
+	openDialog() {
+		this.dialog.open(DialogClientsComponent, {
+			height: '370px',
+			width: '600px'
+		});
+	}
 
-	  clientSelection(id) {
-		    this.clientsService.navigateToClientProjects(id);
-	  }
+	clientSelection(id) {
+		this.clientsService.navigateToClientProjects(id);
+	}
 
-	  getTableValueFromTableHeader(obj, key) {
+	getTableValueFromTableHeader(obj, key) {
         key = key.replace(/\s/ig, '_');
         console.log(obj[key]);
         return obj[key];
