@@ -7,44 +7,10 @@ import {CapitalizePipe} from "../common/pipes/capitalize.pipe";
 import {ClientsService} from "../common/services/clients.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {SignInService} from "../sign-in/sign-in.service";
-import {Observable, Subject} from 'rxjs';
-
-class ActivatedRouteStub {
-    private subject = new Subject();
-    snapshot = {
-        params: Observable.of({})
-    };
-
-    set testParams(params: any) {
-        this.snapshot.params = Observable.of(params);
-    }
-
-    get params() {
-        return this.subject.asObservable();
-    }
-
-    push(value) {
-        this.subject.next(value);
-    }
-}
-class RouterStub {}
-class ClientsServiceStub {
-    clients;
-    private subject = new Subject();
-
-    constructor() {
-        this.getAllClients();
-    }
-
-    getAllClients() {
-        this.clients = this.subject.asObservable();
-    }
-}
-class SignInServiceStub {
-    authLogin(uid) {}
-
-    logOutAndRedirect() {}
-}
+import {ActivatedRouteStub} from '../common/stubs/activated-route.stub';
+import {ClientsServiceStub} from "../common/stubs/clients-service.stub";
+import {RouterStub} from "../common/stubs/router.stub";
+import {SignInServiceStub} from "../common/stubs/sign-in-service.stub";
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
