@@ -19,10 +19,6 @@ describe('DashboardComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-
     it('should replace spaces with underscores', () => {
         const returnVal = "just testing";
         const test = {
