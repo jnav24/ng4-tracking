@@ -65,4 +65,11 @@ describe('DashboardComponent', () => {
 
         expect(expected).toEqual(returnVal);
     });
+
+    it('should match the sum to the expected value', () => {
+        const actual = 7;
+        const array = [1,2,3,1];
+        const expected = component.arraySum(array);
+        expect(actual).toEqual(expected);
+    });
 });

@@ -12,6 +12,8 @@ import {ClientsService} from '../common/services/clients.service';
 export class DashboardComponent implements OnInit {
 	clients: Clients[];
 	client_table_headers: string[] = [];
+	colspan: number[];
+	totalCols: number;
 
 	constructor(
 	    private dialog: MdDialog,
@@ -20,14 +22,18 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit() {
 		this.client_table_headers = [
-			'id',
+			'image',
 			'name',
 			'description',
+			'outstanding'
 		];
 
         this.clientsService.clients.subscribe(clients => {
             this.clients = clients;
         });
+
+		this.colspan = [1,2,3,1];
+		this.totalCols = this.arraySum(this.colspan);
 	}
 
 	openDialog() {
@@ -43,7 +49,12 @@ export class DashboardComponent implements OnInit {
 
 	getTableValueFromTableHeader(obj, key) {
         key = key.replace(/\s/ig, '_');
-        console.log(obj[key]);
         return obj[key];
     }
+
+    arraySum(array: number[]) {
+		return array.reduce((sum, value) => {
+			return sum + value;
+		});
+	}
 }

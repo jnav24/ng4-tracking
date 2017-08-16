@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 export class ClientsService {
     cid: string;
     clients: FirebaseListObservable<Clients[]>;
+    default_image: string = 'assets/images/logo-placeholder-1.png';
 
     constructor(
         private router: Router,
@@ -28,7 +29,15 @@ export class ClientsService {
     }
 
     addClient(uid, name, description) {
-        return this.af.database.ref('clients').push(new Clients(uid, name, description));
+        return this.af.database.ref('clients')
+            .push(
+                new Clients(
+                    uid,
+                    name,
+                    description,
+                    this.default_image
+                )
+            );
     }
 
     navigateToClientProjects(cid) {

@@ -3,19 +3,21 @@
 <section class="container">
     <article>
         <md-grid-list class="card-style" cols="3" rowHeight="2:1" gutterSize="21px">
-      <md-grid-tile class="daily">
-        <md-grid-tile-header>Total Hours Today</md-grid-tile-header>
-        <span>0</span>
-      </md-grid-tile>
-      <md-grid-tile class="weekly">
-        <md-grid-tile-header>Total Hours This Week</md-grid-tile-header>
-        <span>0</span>
-      </md-grid-tile>
-      <md-grid-tile class="uninvoiced">
-        <md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
-        <span>$0.00</span>
-      </md-grid-tile>
-    </md-grid-list>
+            <md-grid-tile class="daily">
+                <md-grid-tile-header>Total Hours Today</md-grid-tile-header>
+                <span>0</span>
+            </md-grid-tile>
+
+            <md-grid-tile class="weekly">
+                <md-grid-tile-header>Total Hours This Week</md-grid-tile-header>
+                <span>0</span>
+            </md-grid-tile>
+
+            <md-grid-tile class="uninvoiced">
+                <md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
+                <span>$0.00</span>
+            </md-grid-tile>
+        </md-grid-list>
 
         <md-card>
             <md-card-title class="text-left flex">
@@ -27,36 +29,47 @@
             </md-card-title>
 
             <div *ngIf="clients?.length">
-                <md-grid-list class="table-header" [cols]="client_table_headers.length+1" rowHeight="24" >
-                    <md-grid-tile *ngFor="let header of client_table_headers">{{ header | capitalize }}</md-grid-tile>
-                    <md-grid-tile>Action</md-grid-tile>
+                <md-grid-list class="table-header" [cols]="totalCols" rowHeight="24" >
+                    <md-grid-tile *ngFor="let header of client_table_headers; let int = index" [colspan]="colspan[int]">
+                        {{ header | capitalize }}
+                        {{ int }}
+                    </md-grid-tile>
                 </md-grid-list>
 
                 <md-grid-list
                     class="table-content"
                     (click)="clientSelection(client.$key)"
                     *ngFor="let client of clients"
-                    [cols]="client_table_headers.length+1" rowHeight="24" >
-                    <md-grid-tile *ngFor="let value of client_table_headers">{{ client[value] }}</md-grid-tile>
-                    <md-grid-tile></md-grid-tile>
+                    [cols]="totalCols" rowHeight="24" >
+                    <md-grid-tile *ngFor="let value of client_table_headers; let int = index" [colspan]="colspan[int]">
+                        <div *ngIf="value === 'image'" class="logo-container">
+                            <img src="{{ client[value] }}" alt="">
+                        </div>
+
+                        <div *ngIf="value !== 'image'" class="ellipsis">
+                            {{ client[value] }}
+                        </div>
+                    </md-grid-tile>
                 </md-grid-list>
             </div>
 
             <div class="empty-state" *ngIf="!clients?.length">
-        <md-icon>remove_circle_outline</md-icon>
-        <p>You do not have clients.<br>Click on the
-          <button md-mini-fab class="success thumbnail">
-            <md-icon>add</md-icon>
-          </button>
-          button above to add a client.</p>
-      </div>
+                <md-icon>remove_circle_outline</md-icon>
+                <p>
+                    You do not have clients.<br>Click on the
+                    <button md-mini-fab class="success thumbnail">
+                        <md-icon>add</md-icon>
+                    </button>
+                    button above to add a client.
+                </p>
+            </div>
         </md-card>
 
         <md-card>
-      <button md-raised-button color="primary">primary</button>
-      <button md-raised-button color="accent">accent</button>
-      <button md-raised-button color="warn">warn</button>
-    </md-card>
+            <button md-raised-button color="primary">primary</button>
+            <button md-raised-button color="accent">accent</button>
+            <button md-raised-button color="warn">warn</button>
+        </md-card>
 
         <md-card>
             <button md-icon-button>

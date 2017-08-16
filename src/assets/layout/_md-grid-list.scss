@@ -26,6 +26,13 @@
             padding-top: 15px;
         }
 
+        .ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 90%;
+            white-space: nowrap;
+        }
+
         &:last-of-type {
             border-bottom: 0;
         }
