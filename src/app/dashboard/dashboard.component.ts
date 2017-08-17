@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
 	openDialog() {
 		this.dialog.open(DialogClientsComponent, {
-			height: '370px',
+			height: '435px',
 			width: '600px'
 		});
 	}

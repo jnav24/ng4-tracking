@@ -4,6 +4,6 @@ export class ClientAddress {
         public address_2: string,
         public city: string,
         public state: string,
-        public zip: number
+        public zip: string
     ) {}
 }

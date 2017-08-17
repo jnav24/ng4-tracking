@@ -29,7 +29,7 @@
 
 	.logo-container {
 		overflow: hidden;
-		@include circle(25px, #fff);
+		@include circle(50px, #fff);
 
 		img {
 			min-height: 100%;

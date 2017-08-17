@@ -32,7 +32,6 @@
                 <md-grid-list class="table-header" [cols]="totalCols" rowHeight="24" >
                     <md-grid-tile *ngFor="let header of client_table_headers; let int = index" [colspan]="colspan[int]">
                         {{ header | capitalize }}
-                        {{ int }}
                     </md-grid-tile>
                 </md-grid-list>
 
@@ -40,7 +39,7 @@
                     class="table-content"
                     (click)="clientSelection(client.$key)"
                     *ngFor="let client of clients"
-                    [cols]="totalCols" rowHeight="24" >
+                    [cols]="totalCols" rowHeight="50">
                     <md-grid-tile *ngFor="let value of client_table_headers; let int = index" [colspan]="colspan[int]">
                         <div *ngIf="value === 'image'" class="logo-container">
                             <img src="{{ client[value] }}" alt="">

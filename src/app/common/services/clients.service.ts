@@ -4,6 +4,8 @@ import {Clients} from "../models/clients.model";
 import {FirebaseListObservable} from "angularfire2/database/firebase_list_observable";
 import {SignInService} from "../../sign-in/sign-in.service";
 import {Router} from "@angular/router";
+import {ClientAddress} from "../models/client-address.model";
+import {ClientContact} from "../models/client-contact.model";
 
 @Injectable()
 export class ClientsService {
@@ -28,14 +30,17 @@ export class ClientsService {
         });
     }
 
-    addClient(uid, name, description) {
+    addClient(uid, name, owner, description) {
         return this.af.database.ref('clients')
             .push(
                 new Clients(
                     uid,
                     name,
                     description,
-                    this.default_image
+                    this.default_image,
+                    owner,
+                    [new ClientAddress('','','','','')],
+                    [new ClientContact('','')]
                 )
             );
     }
