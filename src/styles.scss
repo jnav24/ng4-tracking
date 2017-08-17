@@ -35,6 +35,10 @@ body {
 .success {
 	background-color: map-get($colors, success) !important;
 	color: #fff !important;
+
+	&.disabled {
+		background: rgba(#ccc, 0.4) !important;
+	}
 }
 
 .text-left {

@@ -19,8 +19,9 @@ export class DialogClientsComponent implements OnInit {
 
     ngOnInit() {
         this.new_client = this.form.group({
-            company_name: ['', []],
-            company_description: ['', []],
+            company_name: ['', [Validators.required]],
+            owner_name: ['', [Validators.required]],
+            company_description: ['', [Validators.required]],
         });
     }
 
@@ -28,6 +29,7 @@ export class DialogClientsComponent implements OnInit {
         this.clientsService.addClient(
             this.signinService.uid,
             this.new_client.value.company_name,
+            this.new_client.value.owner_name,
             this.new_client.value.company_description)
         .then(result => {
             if (typeof result.key !== 'undefined') {

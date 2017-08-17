@@ -6,11 +6,20 @@
     </md-input-container>
 
     <md-input-container class="fw-full">
+        <input mdInput placeholder="Owner Name" formControlName="owner_name">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
         <textarea mdInput class="description" placeholder="Description" formControlName="company_description"></textarea>
     </md-input-container>
 </md-dialog-content>
 
 <md-dialog-actions>
     <button md-button md-dialog-close>Cancel</button>
-    <button md-raised-button class="success" [md-dialog-close]="true" (click)="addClient()">Add</button>
+    <button md-raised-button
+            class="success"
+            [disabled]="!new_client.valid"
+            [ngClass]="{'disabled': !new_client.valid}"
+            [md-dialog-close]="true"
+            (click)="addClient()">Add</button>
 </md-dialog-actions>
