@@ -14,8 +14,13 @@
 
                 <p class="details">{{ client?.description }}</p>
 
+                <div class="client-info">
+                    <md-icon class="adjust-left">account_circle</md-icon>
+                    <p>{{ client?.owner }} <md-icon class="edit">mode_edit</md-icon></p>
+                </div>
+
                 <div class="client-info" *ngIf="client?.address">
-                    <md-icon>place</md-icon>
+                    <md-icon class="adjust-left">place</md-icon>
                     <p>7655 NW 19th Court</p>
                     <p>Pembroke Pines, FL 33024</p>
                 </div>
@@ -24,11 +29,13 @@
                     Hi address.
                 </div>
 
-                <button md-button *ngIf="!client?.address && !showAddressForm" class="std_button" (click)="toggleAddressForm()">Add Address</button>
+                <button md-button *ngIf="!client?.address && !showAddressForm" class="std_button" (click)="toggleAddressForm()">
+                    Add Address
+                </button>
 
                 <div class="client-info" *ngFor="let contact of client?.contact">
-                    <md-icon *ngIf="contact.type == 'email'">local_post_office</md-icon>
-                    <md-icon *ngIf="contact.type == 'phone'">local_phone</md-icon>
+                    <md-icon class="adjust-left" *ngIf="contact.type == 'email'">local_post_office</md-icon>
+                    <md-icon class="adjust-left" *ngIf="contact.type == 'phone'">local_phone</md-icon>
                     <p>954 665-9421</p>
                 </div>
 

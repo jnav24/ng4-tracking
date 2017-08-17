@@ -44,9 +44,18 @@ h3 {
     text-align: center;
 }
 
-p.details {
-    color: map-get($colors, mid_grey);
+p {
     text-align: center;
+
+    &.owner {
+        color: lighten(map-get($colors, mid_grey), 10%);
+        font-size: 14px;
+        margin-top: 0;
+    }
+
+    &.details {
+        color: map-get($colors, mid_grey);
+    }
 }
 
 .client-info {
@@ -60,7 +69,13 @@ p.details {
     }
 
     .mat-icon {
-        @include posa(0,n,n,0);
+        &.adjust-left {
+            @include posa(0,n,n,0);
+        }
+
+        &.edit {
+            font-size: 12px;
+        }
     }
 
     p {
