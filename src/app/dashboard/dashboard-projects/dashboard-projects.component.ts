@@ -17,6 +17,9 @@ export class DashboardProjectsComponent implements OnInit {
     projects: Projects[];
     showAddressForm: boolean = false;
     showContactForm: boolean = false;
+    project_table_headers: string[] = [];
+    totalCols: number;
+    colspan: number[];
 
     constructor(
         private clientsService: ClientsService,
@@ -36,6 +39,15 @@ export class DashboardProjectsComponent implements OnInit {
             console.log(projects);
             this.projects = projects;
         });
+
+        this.project_table_headers = [
+            'name',
+            'description',
+            'budget',
+            'rate'
+        ];
+        this.colspan = [2,3,1,1];
+        this.totalCols = this.arraySum(this.colspan);
     }
 
     toggleAddressForm() {
@@ -50,6 +62,12 @@ export class DashboardProjectsComponent implements OnInit {
         this.dialog.open(DialogProjectsComponent, {
             height: '435px',
             width: '600px'
+        });
+    }
+
+    arraySum(array: number[]) {
+        return array.reduce((sum, value) => {
+            return sum + value;
         });
     }
 }

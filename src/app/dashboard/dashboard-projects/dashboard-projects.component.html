@@ -60,7 +60,21 @@
                 </h2>
 
                 <div *ngIf="projects?.length">
-                    dance!!
+                    <md-grid-list class="table-header" [cols]="totalCols" rowHeight="24">
+                        <md-grid-tile *ngFor="let header of project_table_headers; let int = index" [colspan]="colspan[int]">
+                            {{ header | capitalize }}
+                        </md-grid-tile>
+                    </md-grid-list>
+
+                    <md-grid-list
+                            class="table-content"
+                            *ngFor="let project of projects"
+                            rowHeight="50"
+                            [cols]="totalCols">
+                        <md-grid-tile *ngFor="let value of project_table_headers; let int = index" [colspan]="colspan[int]">
+                            {{ project[value] }}
+                        </md-grid-tile>
+                    </md-grid-list>
                 </div>
 
                 <div class="empty-state" *ngIf="!projects?.length">
