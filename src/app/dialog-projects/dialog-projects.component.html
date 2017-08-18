@@ -1,0 +1,35 @@
+<h2 md-dialog-title>Add New Project</h2>
+
+<md-dialog-content [formGroup]="new_project">
+    <md-input-container class="fw-full">
+        <input mdInput placeholder="Project Name" formControlName="project_name">
+    </md-input-container>
+
+    <md-grid-list cols="2" rowHeight="70" gutterSize="25">
+        <md-grid-tile>
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Rate" formControlName="project_price">
+            </md-input-container>
+        </md-grid-tile>
+
+        <md-grid-tile>
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Budget" formControlName="project_budget">
+            </md-input-container>
+        </md-grid-tile>
+    </md-grid-list>
+
+    <md-input-container class="fw-full">
+        <textarea mdInput class="description" placeholder="Description" formControlName="project_description"></textarea>
+    </md-input-container>
+</md-dialog-content>
+
+<md-dialog-actions>
+    <button md-button md-dialog-close>Cancel</button>
+    <button md-raised-button
+            class="success"
+            [disabled]="!new_project.valid"
+            [ngClass]="{'disabled': !new_project.valid}"
+            [md-dialog-close]="true"
+            (click)="addProject()">Add</button>
+</md-dialog-actions>

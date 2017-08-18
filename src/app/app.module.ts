@@ -27,6 +27,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
 import { DialogClientsComponent } from './dialog-clients/dialog-clients.component';
+import { DialogProjectsComponent } from './dialog-projects/dialog-projects.component';
 import { DashboardProjectsComponent } from './dashboard/dashboard-projects/dashboard-projects.component';
 
 // pipes
@@ -40,7 +41,8 @@ import { CapitalizePipe } from './common/pipes/capitalize.pipe';
     DashboardNavComponent,
     DialogClientsComponent,
     CapitalizePipe,
-    DashboardProjectsComponent
+    DashboardProjectsComponent,
+    DialogProjectsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -65,7 +67,8 @@ import { CapitalizePipe } from './common/pipes/capitalize.pipe';
     ReactiveFormsModule
   ],
     entryComponents: [
-        DialogClientsComponent
+        DialogClientsComponent,
+        DialogProjectsComponent,
     ],
   providers: [
     AngularFireDatabase,

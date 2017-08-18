@@ -5,16 +5,15 @@ import {AngularFireDatabase} from "angularfire2/database/database";
 
 @Injectable()
 export class ProjectsService {
-    cid: string;
     projects: FirebaseListObservable<Projects[]>;
 
-    constructor(private af: AngularFireDatabase) { }
+    constructor(private af: AngularFireDatabase) {}
 
-    getAllProjects() {
-        this.projects = this.af.list('clients', {
+    getAllProjects(cid) {
+        return this.af.list('projects', {
             query: {
                 orderByChild: 'cid',
-                equalTo: this.cid
+                equalTo: cid
             }
         });
     }

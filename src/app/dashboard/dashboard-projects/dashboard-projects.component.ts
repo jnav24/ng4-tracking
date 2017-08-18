@@ -3,37 +3,53 @@ import {ActivatedRoute} from "@angular/router";
 import {ClientsService} from "../../common/services/clients.service";
 import {ProjectsService} from "../../common/services/projects.service";
 import {Clients} from "../../common/models/clients.model";
+import {MdDialog} from "@angular/material";
+import {DialogProjectsComponent} from "../../dialog-projects/dialog-projects.component";
+import {Projects} from '../../common/models/projects.model';
 
 @Component({
-  selector: 'app-dashboard-projects',
-  templateUrl: './dashboard-projects.component.html',
-  styleUrls: ['./dashboard-projects.component.scss']
+    selector: 'app-dashboard-projects',
+    templateUrl: './dashboard-projects.component.html',
+    styleUrls: ['./dashboard-projects.component.scss']
 })
 export class DashboardProjectsComponent implements OnInit {
-  client: Clients;
-  showAddressForm: boolean = false;
-  showContactForm: boolean = false;
+    client: Clients;
+    projects: Projects[];
+    showAddressForm: boolean = false;
+    showContactForm: boolean = false;
 
-  constructor(
-      private route: ActivatedRoute,
-      private clientsService: ClientsService,
-      private projectsService: ProjectsService
-  ) { }
+    constructor(
+        private clientsService: ClientsService,
+        private dialog: MdDialog,
+        private projectsService: ProjectsService,
+        private route: ActivatedRoute
+    ) { }
 
-  ngOnInit() {
-      this.projectsService.cid = this.route.snapshot.params['cid'];
-      this.clientsService.cid = this.route.snapshot.params['cid'];
-      this.clientsService.getClientDetails().subscribe(client => {
-          console.log(client);
-          this.client = client;
-      });
-  }
+    ngOnInit() {
+        const cid = this.route.snapshot.params['cid'];
 
-  toggleAddressForm() {
-      this.showAddressForm = !this.showAddressForm;
-  }
+        this.clientsService.getClientDetails(cid).subscribe(client => {
+            this.client = client;
+        });
 
-  toggleContactForm() {
-      this.showContactForm = !this.showContactForm;
-  }
+        this.projectsService.getAllProjects(cid).subscribe(projects => {
+            console.log(projects);
+            this.projects = projects;
+        });
+    }
+
+    toggleAddressForm() {
+        this.showAddressForm = !this.showAddressForm;
+    }
+
+    toggleContactForm() {
+        this.showContactForm = !this.showContactForm;
+    }
+
+    openDialog() {
+        this.dialog.open(DialogProjectsComponent, {
+            height: '435px',
+            width: '600px'
+        });
+    }
 }

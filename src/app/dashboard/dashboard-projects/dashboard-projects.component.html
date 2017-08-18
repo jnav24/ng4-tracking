@@ -59,7 +59,11 @@
                     </button>
                 </h2>
 
-                <div class="empty-state" *ngIf="!clients?.length">
+                <div *ngIf="projects?.length">
+                    dance!!
+                </div>
+
+                <div class="empty-state" *ngIf="!projects?.length">
                     <md-icon>remove_circle_outline</md-icon>
                     <p>You do not have projects.<br>Click on the
                         <button md-mini-fab class="success thumbnail">
