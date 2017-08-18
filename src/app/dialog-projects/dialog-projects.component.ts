@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProjectsService} from "../common/services/projects.service";
 
 @Component({
     selector: 'app-dialog-projects',
@@ -10,7 +11,8 @@ export class DialogProjectsComponent implements OnInit {
     new_project: FormGroup;
 
     constructor(
-        private form: FormBuilder
+        private form: FormBuilder,
+        private projectsService: ProjectsService
     ) { }
 
     ngOnInit() {
@@ -22,5 +24,16 @@ export class DialogProjectsComponent implements OnInit {
         });
     }
 
-    addProject() {}
+    addProject() {
+        this.projectsService.addProject(
+            this.new_project.value.project_name,
+            this.new_project.value.project_price,
+            this.new_project.value.project_budget,
+            this.new_project.value.project_description,
+        ).then(result => {
+            console.log(result);
+        }).catch(e => {
+            console.log(e);
+        });
+    }
 }
