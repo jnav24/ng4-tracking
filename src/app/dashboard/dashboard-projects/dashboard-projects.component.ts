@@ -35,8 +35,7 @@ export class DashboardProjectsComponent implements OnInit {
             this.client = client;
         });
 
-        this.projectsService.getAllProjects(cid).subscribe(projects => {
-            console.log(projects);
+        this.projectsService.getAllProjects().subscribe(projects => {
             this.projects = projects;
         });
 

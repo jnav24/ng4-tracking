@@ -9,6 +9,7 @@ import {ClientContact} from "../models/client-contact.model";
 
 @Injectable()
 export class ClientsService {
+    cid: string;
     clients: FirebaseListObservable<Clients[]>;
     default_image: string = 'assets/images/logo-placeholder-1.png';
 
@@ -45,10 +46,18 @@ export class ClientsService {
     }
 
     navigateToClientProjects(cid) {
+        this.setCID(cid);
         this.router.navigate([`dashboard/${this.signinService.uid}/${cid}`]);
     }
 
     getClientDetails(cid) {
+        this.setCID(cid);
         return this.af.object(`clients/${cid}`);
+    }
+
+    setCID(cid) {
+        if (typeof this.cid === 'undefined') {
+            this.cid = cid;
+        }
     }
 }

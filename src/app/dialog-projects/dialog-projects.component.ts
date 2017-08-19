@@ -31,7 +31,11 @@ export class DialogProjectsComponent implements OnInit {
             this.new_project.value.project_budget,
             this.new_project.value.project_description,
         ).then(result => {
-            console.log(result);
+            if (typeof result.key !== 'undefined') {
+                // need uid
+                // need cid
+                // need pid
+            }
         }).catch(e => {
             console.log(e);
         });
