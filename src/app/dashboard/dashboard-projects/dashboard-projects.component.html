@@ -77,6 +77,7 @@
 
                     <md-grid-list
                             class="table-content"
+                            (click)="projectSelection(project.$key)"
                             *ngFor="let project of projects"
                             rowHeight="50"
                             [cols]="totalCols">

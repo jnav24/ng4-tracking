@@ -49,6 +49,10 @@ export class DashboardProjectsComponent implements OnInit {
         this.totalCols = this.arraySum(this.colspan);
     }
 
+    projectSelection(id) {
+        this.projectsService.navigateToProjectsTracking(id);
+    }
+
     toggleAddressForm() {
         this.showAddressForm = !this.showAddressForm;
     }

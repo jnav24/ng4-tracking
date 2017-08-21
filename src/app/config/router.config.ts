@@ -2,6 +2,7 @@ import {Route} from '@angular/router';
 import {SignInComponent} from '../sign-in/sign-in.component';
 import {DashboardComponent} from '../dashboard/dashboard.component';
 import {DashboardProjectsComponent} from "../dashboard/dashboard-projects/dashboard-projects.component";
+import {DashboardTrackerComponent} from "../dashboard/dashboard-tracker/dashboard-tracker.component";
 
 export const RouterConfig: Route[] = [
 	{ path: '', component: SignInComponent },
@@ -11,7 +12,8 @@ export const RouterConfig: Route[] = [
 		path: 'dashboard',
 		children: [
 			{ path: ':uid', component: DashboardComponent },
-			{ path: ':uid/:cid', component: DashboardProjectsComponent }
+			{ path: ':uid/:cid', component: DashboardProjectsComponent },
+			{ path: ':uid/:cid/:pid', component: DashboardTrackerComponent }
 		]
 	},
 	{ path: '**', redirectTo: 'login' },

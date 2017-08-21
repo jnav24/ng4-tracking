@@ -1,0 +1,48 @@
+@import '../../../assets/base/imports';
+
+.info-summary {
+    padding: 0 20px;
+    position: relative;
+    width: 100%;
+
+    .start-timer {
+        background: map-get($colors, secondary);
+        color: #fff;
+        @include posa(10px, 20px, n, n);
+        
+        &.active {
+            background: map-get($colors, primary);
+        }
+    }
+}
+
+h1 {
+    font-weight: 300;
+    margin: 0;
+}
+
+p {
+    color: map-get($colors, mid_grey);
+
+    &.client {
+        font-size: 13px;
+        margin-top: 0;
+    }
+
+    &.description {
+        height: 55px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        //width: 90%;
+        //white-space: nowrap;
+    }
+}
+
+.hours {
+    background: map-get($colors, secondary) !important;
+}
+
+.outstanding {
+    background: map-get($colors, primary) !important;
+    color: #fff !important;
+}

@@ -32,9 +32,7 @@ export class DialogProjectsComponent implements OnInit {
             this.new_project.value.project_description,
         ).then(result => {
             if (typeof result.key !== 'undefined') {
-                // need uid
-                // need cid
-                // need pid
+                this.projectsService.navigateToProjectsTracking(result.key);
             }
         }).catch(e => {
             console.log(e);

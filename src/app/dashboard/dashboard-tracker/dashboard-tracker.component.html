@@ -1,0 +1,36 @@
+<dashboard-nav></dashboard-nav>
+
+<section class="container">
+    <article>
+        <md-grid-list class="card-style" cols="5" rowHeight="150" gutterSize="20">
+            <md-grid-tile colspan="3">
+                <div class="info-summary text-left">
+                    <button
+                            md-raised-button
+                            (click)="toogleActiveState()"
+                            [ngClass]="{'active': active}"
+                            class="start-timer">Start Timer</button>
+                    <h1>Boros</h1>
+                    <p class="client">One Punch Man</p>
+                    <p class="description">
+                        Brad Bird and Disney's 2015 sci-fi adventure film Tomorrowland is an underrated film that I actually really enjoyed. my name is peaches and i am the best, all the djs like to feel the breasts
+                    </p>
+                </div>
+            </md-grid-tile>
+
+            <md-grid-tile
+                    class="hours"
+                    colspan="1">
+                <md-grid-tile-header>Total Hours</md-grid-tile-header>
+                38.5
+            </md-grid-tile>
+
+            <md-grid-tile
+                    class="outstanding"
+                    colspan="1">
+                <md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
+                $1,350.45
+            </md-grid-tile>
+        </md-grid-list>
+    </article>
+</section>
