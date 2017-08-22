@@ -1,15 +1,26 @@
 @import '../../../assets/base/imports';
 
+.logo-container {
+    overflow: hidden;
+    margin-left: 20px;
+    @include circle(100px, #fff);
+
+    img {
+        min-height: 100%;
+        width: 100%;
+    }
+}
+
 .info-summary {
     padding: 0 20px;
     position: relative;
-    width: 100%;
+    width: 60%;
 
     .start-timer {
         background: map-get($colors, secondary);
         color: #fff;
         @include posa(10px, 20px, n, n);
-        
+
         &.active {
             background: map-get($colors, primary);
         }
@@ -19,6 +30,7 @@
 h1 {
     font-weight: 300;
     margin: 0;
+    padding-top: 10px;
 }
 
 p {
@@ -30,19 +42,83 @@ p {
     }
 
     &.description {
+        display: inline-block;
+        font-size: 14px;
         height: 55px;
+        margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;
-        //width: 90%;
+        //width: 50%;
         //white-space: nowrap;
     }
 }
 
+.header-summary {
+    p {
+        font-size: 24px;
+        margin: 0;
+    }
+}
+
 .hours {
-    background: map-get($colors, secondary) !important;
+    @include setOverviewColor(#8e44ad);
+
+    p {
+        color: #8e44ad;
+    }
 }
 
 .outstanding {
-    background: map-get($colors, primary) !important;
-    color: #fff !important;
+    @include setOverviewColor(#CDDC39);
+
+    p {
+        color: #CDDC39;
+    }
+}
+
+.timer {
+    @include setOverviewColor(#2980b9);
+
+    .mat-grid-tile-header {
+        padding-top: 30px;
+        text-align: center;
+
+        p {
+            color: #2980b9;
+            font-size: 30px;
+            font-weight: bold;
+            width: 100%;
+        }
+    }
+
+    button {
+        background: #2980b9;
+        color: #fff;
+        margin-top: 80px;
+
+        span {
+            color: #fff;
+        }
+    }
+
+    &.active {
+        background: #2980b9 !important;
+
+        .mat-grid-tile-header {
+            border: 0;
+
+            p {
+                color: #fff;
+            }
+        }
+
+        button {
+            background: #fff;
+            color: #2980b9;
+
+            span {
+                color: #2980b9;
+            }
+        }
+    }
 }

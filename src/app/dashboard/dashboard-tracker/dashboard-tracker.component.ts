@@ -7,6 +7,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
+    trackings = [
+        {
+            date: 'Tuesday 22 Aug',
+            times: [
+                {
+                    title: 'Punch Boros',
+                    description: 'punch him in the face',
+                    start: '',
+                    end: ''
+                },
+                {
+                    title: 'Attack Aliens',
+                    description: 'Find the alien leader and punch him in the face',
+                    start: '',
+                    end: ''
+                }
+            ]
+        },
+        {
+            date: 'Monday 21 Aug',
+            times: [
+                {
+                    title: 'Go Shopping',
+                    description: 'There is a sale on seaweed that helps with hair growth',
+                    start: '',
+                    end: ''
+                }
+            ]
+        }
+    ];
 
     constructor() { }
 
@@ -14,5 +44,9 @@ export class DashboardTrackerComponent implements OnInit {
 
     toogleActiveState() {
         this.active = !this.active;
+    }
+
+    setTime(start, end) {
+        return '4.20';
     }
 }

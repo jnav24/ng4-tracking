@@ -34,7 +34,10 @@ $navHeight: 65px;
 
 @mixin setOverviewColor($color) {
 	.mat-grid-tile-header {
+		background: none;
 		border-top: 5px solid $color;
+		color: map-get($colors, mid_grey);
+		font-weight: 300;
 	}
 
 	span {
