@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MdInputModule, MdSelectModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdListModule, MdGridListModule, MdDialogModule, MdTooltipModule, MdCheckboxModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
+import {MomentModule} from "angular2-moment";
 
 // providers
 import { AngularFireDatabase } from "angularfire2/database/database";
@@ -65,6 +66,7 @@ import { DashboardTrackerComponent } from './dashboard/dashboard-tracker/dashboa
     MdDialogModule,
     MdTooltipModule,
     MdCheckboxModule,
+    MomentModule,
     RouterModule.forRoot(RouterConfig),
     ReactiveFormsModule
   ],

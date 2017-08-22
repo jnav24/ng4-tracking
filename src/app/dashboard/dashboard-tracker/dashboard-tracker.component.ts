@@ -9,7 +9,7 @@ export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
     trackings = [
         {
-            date: 'Tuesday 22 Aug',
+            date: '2017-08-22T23:00:00.000-01:00',
             times: [
                 {
                     title: 'Punch Boros',
@@ -26,7 +26,7 @@ export class DashboardTrackerComponent implements OnInit {
             ]
         },
         {
-            date: 'Monday 21 Aug',
+            date: '2017-08-21T23:00:00.000-01:00',
             times: [
                 {
                     title: 'Go Shopping',

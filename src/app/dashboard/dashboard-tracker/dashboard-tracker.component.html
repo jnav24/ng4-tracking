@@ -46,7 +46,8 @@
 
         <md-card *ngFor="let tracking of trackings">
             <md-card-title>
-                {{ tracking.date }}
+                <strong>{{ tracking.date | amDateFormat:'dddd' }}</strong>
+                {{ tracking.date | amDateFormat:'DD MMM' }}
             </md-card-title>
 
             <md-grid-list cols="12" *ngFor="let time of tracking.times">
