@@ -122,3 +122,13 @@ p {
         }
     }
 }
+
+.mat-card {
+    .mat-grid-list {
+        border-top: 1px solid map-get($colors, lte_grey);
+
+        &:first-of-type {
+            border: 0;
+        }
+    }
+}
