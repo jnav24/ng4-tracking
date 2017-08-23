@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MdDialog} from "@angular/material";
+import {DialogTrackingComponent} from "../../dialog-tracking/dialog-tracking.component";
 
 @Component({
     selector: 'app-dashboard-tracker',
@@ -38,12 +40,20 @@ export class DashboardTrackerComponent implements OnInit {
         }
     ];
 
-    constructor() { }
+    constructor(private dialog: MdDialog) { }
 
     ngOnInit() {}
 
+    openDialog() {
+        this.toogleActiveState();
+        // this.dialog.open(DialogTrackingComponent, {
+        //     height: '435px',
+        //     width: '600px'
+        // });
+    }
+
     toogleActiveState() {
-        // this.active = !this.active;
+        this.active = !this.active;
     }
 
     setTime(start, end) {

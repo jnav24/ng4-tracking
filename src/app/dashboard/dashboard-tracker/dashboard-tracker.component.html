@@ -37,20 +37,22 @@
                 <md-grid-tile-header><p>00:00:00</p></md-grid-tile-header>
                 <button
                         md-raised-button
-                        (click)="toogleActiveState()"
+                        (click)="openDialog()"
                         class="start-timer">
                     <span *ngIf="!active">Start</span><span *ngIf="active">Stop</span> Timer
                 </button>
             </md-grid-tile>
         </md-grid-list>
 
-        <md-card *ngFor="let tracking of trackings">
+        <md-card *ngFor="let tracking of trackings; let d = index">
             <md-card-title>
                 <strong>{{ tracking.date | amDateFormat:'dddd' }}</strong>
                 {{ tracking.date | amDateFormat:'DD MMM' }}
             </md-card-title>
 
-            <md-grid-list cols="12" class="time-row" [ngClass]="{'active': active}" *ngFor="let time of tracking.times">
+            <md-grid-list cols="12" class="time-row"
+                [ngClass]="{'active': active && int == 0 && d == 0}"
+                *ngFor="let time of tracking.times; let int = index">
                 <md-grid-tile colspan="9">
                     <div class="text-left fw-full pd-l">
                         <h5>{{ time.title }}</h5>

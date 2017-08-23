@@ -30,10 +30,11 @@ import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.c
 import { DialogClientsComponent } from './dialog-clients/dialog-clients.component';
 import { DialogProjectsComponent } from './dialog-projects/dialog-projects.component';
 import { DashboardProjectsComponent } from './dashboard/dashboard-projects/dashboard-projects.component';
+import { DashboardTrackerComponent } from './dashboard/dashboard-tracker/dashboard-tracker.component';
+import { DialogTrackingComponent } from './dialog-tracking/dialog-tracking.component';
 
 // pipes
 import { CapitalizePipe } from './common/pipes/capitalize.pipe';
-import { DashboardTrackerComponent } from './dashboard/dashboard-tracker/dashboard-tracker.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DashboardTrackerComponent } from './dashboard/dashboard-tracker/dashboa
     CapitalizePipe,
     DashboardProjectsComponent,
     DialogProjectsComponent,
-    DashboardTrackerComponent
+    DashboardTrackerComponent,
+    DialogTrackingComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -73,6 +75,7 @@ import { DashboardTrackerComponent } from './dashboard/dashboard-tracker/dashboa
     entryComponents: [
         DialogClientsComponent,
         DialogProjectsComponent,
+        DialogTrackingComponent,
     ],
   providers: [
     AngularFireDatabase,
