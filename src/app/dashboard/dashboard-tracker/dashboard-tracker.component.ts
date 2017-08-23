@@ -45,11 +45,21 @@ export class DashboardTrackerComponent implements OnInit {
     ngOnInit() {}
 
     openDialog() {
-        this.toogleActiveState();
-        // this.dialog.open(DialogTrackingComponent, {
-        //     height: '435px',
-        //     width: '600px'
-        // });
+        if (this.active) {
+            this.toogleActiveState();
+            return;
+        }
+
+        const dialogRef = this.dialog.open(DialogTrackingComponent, {
+            height: '435px',
+            width: '600px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.toogleActiveState();
+            }
+        });
     }
 
     toogleActiveState() {
