@@ -50,16 +50,16 @@
                 {{ tracking.date | amDateFormat:'DD MMM' }}
             </md-card-title>
 
-            <md-grid-list cols="12" *ngFor="let time of tracking.times">
+            <md-grid-list cols="12" class="time-row" [ngClass]="{'active': active}" *ngFor="let time of tracking.times">
                 <md-grid-tile colspan="9">
-                    <div class="text-left fw-full">
-                        <p>{{ time.title }}</p>
+                    <div class="text-left fw-full pd-l">
+                        <h5>{{ time.title }}</h5>
                         <p>{{ time.description }}</p>
                     </div>
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">
-                    <md-icon>schedule</md-icon>
+                    <md-icon class="time-icon">schedule</md-icon>
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">

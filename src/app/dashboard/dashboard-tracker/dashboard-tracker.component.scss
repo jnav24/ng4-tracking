@@ -33,6 +33,35 @@ h1 {
     padding-top: 10px;
 }
 
+.time-row {
+    &.active {
+        background: #2980b9;
+        color: #fff;
+
+        p {
+            color: #fff;
+        }
+
+        .time-icon {
+            display: block;
+        }
+    }
+
+    h5 {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0px 0 0;
+
+        + p {
+            margin: 0;
+        }
+    }
+
+    .time-icon {
+        display: none;
+    }
+}
+
 p {
     color: map-get($colors, mid_grey);
 

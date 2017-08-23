@@ -43,7 +43,7 @@ export class DashboardTrackerComponent implements OnInit {
     ngOnInit() {}
 
     toogleActiveState() {
-        this.active = !this.active;
+        // this.active = !this.active;
     }
 
     setTime(start, end) {
