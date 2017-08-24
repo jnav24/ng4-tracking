@@ -20,7 +20,7 @@
                     class="header-summary hours"
                     colspan="1">
                 <md-grid-tile-header>Total Hours</md-grid-tile-header>
-                <p>38.5</p>
+                <p>{{ total_hours }}</p>
             </md-grid-tile>
 
             <md-grid-tile
@@ -65,7 +65,7 @@
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">
-                    {{ setTime(time.start, time.end) }}
+                    {{ calcHours(time.start_time, time.end_time) }}
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">

@@ -17,14 +17,14 @@ export class DashboardTrackerComponent implements OnInit {
                 {
                     title: 'Punch Boros',
                     description: 'punch him in the face',
-                    start_time: new Date('August 22, 2017 08:00:00'),
-                    end_time: new Date('August 22, 2017 15:00:00')
+                    start_time: new Date('August 22, 2017 08:27:19'),
+                    end_time: new Date('August 22, 2017 14:36:23')
                 },
                 {
                     title: 'Attack Aliens',
                     description: 'Find the alien leader and punch him in the face',
-                    start_time: new Date('August 22, 2017 07:00:00'),
-                    end_time: new Date('August 22, 2017 14:00:00')
+                    start_time: new Date('August 22, 2017 07:16:00'),
+                    end_time: new Date('August 22, 2017 15:26:00')
                 }
             ]
         },
@@ -34,16 +34,19 @@ export class DashboardTrackerComponent implements OnInit {
                 {
                     title: 'Go Shopping',
                     description: 'There is a sale on seaweed that helps with hair growth',
-                    start_time: new Date('August 22, 2017 10:00:00'),
-                    end_time: new Date('August 22, 2017 17:00:00')
+                    start_time: new Date('August 22, 2017 10:03:00'),
+                    end_time: new Date('August 22, 2017 17:48:00')
                 }
             ]
         }
     ];
+    total_hours = 0.00;
 
     constructor(private dialog: MdDialog) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.getTotalCalcHours();
+    }
 
     openDialog() {
         if (this.active) {
@@ -83,7 +86,30 @@ export class DashboardTrackerComponent implements OnInit {
         this.active = !this.active;
     }
 
-    setTime(start, end) {
-        return '4.20';
+    calcHours(start: Date, end: Date) {
+        const start_time = start.getTime();
+        const end_time = end.getTime();
+
+        if (start_time > end_time) {
+            return 4.20;
+        }
+
+        const exact_hours = Math.abs(end_time - start_time)/(60*60*1000);
+
+        return parseFloat(exact_hours.toString()).toFixed(2);
+    }
+
+    getTotalCalcHours() {
+        let total = 0;
+
+        this.trackings.map(tracking => {
+            tracking.times.map(time => {
+                let calc_time = this.calcHours(time.start_time, time.end_time);
+                console.log(parseFloat(calc_time.toString()));
+                total += parseFloat(this.calcHours(time.start_time, time.end_time).toString());
+            });
+        });
+
+        this.total_hours = total;
     }
 }
