@@ -2,23 +2,23 @@
 
 <md-dialog-content [formGroup]="new_time">
     <md-input-container class="fw-full">
-        <input mdInput placeholder="Project Name" formControlName="time_name">
+        <input mdInput placeholder="Project Name" formControlName="time_name" [(ngModel)]="data.time.title">
     </md-input-container>
 
     <md-input-container class="fw-full">
-        <textarea mdInput class="description" placeholder="Description" formControlName="time_description"></textarea>
+        <textarea mdInput class="description" placeholder="Description" formControlName="time_description" [(ngModel)]="data.time.description"></textarea>
     </md-input-container>
 
-    <md-grid-list cols="2" rowHeight="70" gutterSize="25">
+    <md-grid-list *ngIf="data.mode === 'edit'" cols="2" rowHeight="70" gutterSize="25">
         <md-grid-tile>
             <md-input-container class="fw-full">
-                <input mdInput placeholder="Start Time" formControlName="time_start">
+                <input mdInput placeholder="Start Time" formControlName="time_start" [(ngModel)]="data.time.start_time">
             </md-input-container>
         </md-grid-tile>
 
         <md-grid-tile>
             <md-input-container class="fw-full">
-                <input mdInput placeholder="End Time" formControlName="time_end">
+                <input mdInput placeholder="End Time" formControlName="time_end" [(ngModel)]="data.time.end_time">
             </md-input-container>
         </md-grid-tile>
     </md-grid-list>

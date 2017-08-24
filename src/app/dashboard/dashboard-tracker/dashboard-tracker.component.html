@@ -69,7 +69,9 @@
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">
-                    <button md-mini-fab [disabled]="active && int == 0 && d == 0">
+                    <button md-mini-fab
+                       (click)="openEditDialog(int, d)"
+                       [disabled]="active && int == 0 && d == 0">
                         <md-icon>edit</md-icon>
                     </button>
                 </md-grid-tile>

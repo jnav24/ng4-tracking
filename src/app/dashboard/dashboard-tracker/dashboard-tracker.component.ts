@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MdDialog} from "@angular/material";
 import {DialogTrackingComponent} from "../../dialog-tracking/dialog-tracking.component";
+import {TimeTracking} from "../../common/models/time-tracking.model";
 
 @Component({
     selector: 'app-dashboard-tracker',
@@ -16,14 +17,14 @@ export class DashboardTrackerComponent implements OnInit {
                 {
                     title: 'Punch Boros',
                     description: 'punch him in the face',
-                    start: '',
-                    end: ''
+                    start_time: '08:00',
+                    end_time: '15:00'
                 },
                 {
                     title: 'Attack Aliens',
                     description: 'Find the alien leader and punch him in the face',
-                    start: '',
-                    end: ''
+                    start_time: '07:00',
+                    end_time: '14:00'
                 }
             ]
         },
@@ -33,8 +34,8 @@ export class DashboardTrackerComponent implements OnInit {
                 {
                     title: 'Go Shopping',
                     description: 'There is a sale on seaweed that helps with hair growth',
-                    start: '',
-                    end: ''
+                    start_time: '10:00',
+                    end_time: '17:00'
                 }
             ]
         }
@@ -51,8 +52,11 @@ export class DashboardTrackerComponent implements OnInit {
         }
 
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
-            data: { msg: 'hello' },
-            height: '435px',
+            data: {
+                mode: 'new',
+                time: new TimeTracking('null', '00:00', '00:00', '', '', 'null')
+            },
+            height: '365px',
             width: '600px'
         });
 
@@ -60,6 +64,18 @@ export class DashboardTrackerComponent implements OnInit {
             if (result) {
                 this.toogleActiveState();
             }
+        });
+    }
+
+    openEditDialog(int: number, index: number) {
+        console.log(this.trackings[index]['times'][int]);
+        const dialogRef = this.dialog.open(DialogTrackingComponent, {
+            data: {
+                mode: 'edit',
+                time: this.trackings[index]['times'][int]
+            },
+            height: '435px',
+            width: '600px'
         });
     }
 

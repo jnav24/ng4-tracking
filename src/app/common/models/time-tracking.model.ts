@@ -4,6 +4,7 @@ export class TimeTracking {
 		public start_time: string,
 		public end_time: string,
 		public description: string,
+		public title: string,
 		public tasks_id: string
 	) {}
 }
