@@ -12,13 +12,13 @@
     <md-grid-list *ngIf="data.mode === 'edit'" cols="2" rowHeight="70" gutterSize="25">
         <md-grid-tile>
             <md-input-container class="fw-full">
-                <input mdInput placeholder="Start Time" formControlName="time_start" [(ngModel)]="data.time.start_time">
+                <input mdInput placeholder="Start Time" formControlName="time_start" [ngModel]="data.time.start_time | amDateFormat:'HH:mm'">
             </md-input-container>
         </md-grid-tile>
 
         <md-grid-tile>
             <md-input-container class="fw-full">
-                <input mdInput placeholder="End Time" formControlName="time_end" [(ngModel)]="data.time.end_time">
+                <input mdInput placeholder="End Time" formControlName="time_end" [ngModel]="data.time.end_time | amDateFormat:'HH:mm'">
             </md-input-container>
         </md-grid-tile>
     </md-grid-list>

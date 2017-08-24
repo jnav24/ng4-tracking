@@ -12,30 +12,30 @@ export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
     trackings = [
         {
-            date: '2017-08-22T23:00:00.000-01:00',
+            date: new Date('August 22, 2017 00:00:00'),
             times: [
                 {
                     title: 'Punch Boros',
                     description: 'punch him in the face',
-                    start_time: '08:00',
-                    end_time: '15:00'
+                    start_time: new Date('August 22, 2017 08:00:00'),
+                    end_time: new Date('August 22, 2017 15:00:00')
                 },
                 {
                     title: 'Attack Aliens',
                     description: 'Find the alien leader and punch him in the face',
-                    start_time: '07:00',
-                    end_time: '14:00'
+                    start_time: new Date('August 22, 2017 07:00:00'),
+                    end_time: new Date('August 22, 2017 14:00:00')
                 }
             ]
         },
         {
-            date: '2017-08-21T23:00:00.000-01:00',
+            date: new Date('August 21, 2017 00:00:00'),
             times: [
                 {
                     title: 'Go Shopping',
                     description: 'There is a sale on seaweed that helps with hair growth',
-                    start_time: '10:00',
-                    end_time: '17:00'
+                    start_time: new Date('August 22, 2017 10:00:00'),
+                    end_time: new Date('August 22, 2017 17:00:00')
                 }
             ]
         }
@@ -50,11 +50,11 @@ export class DashboardTrackerComponent implements OnInit {
             this.toogleActiveState();
             return;
         }
-
+        const todayD = new Date();
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
-                time: new TimeTracking('null', '00:00', '00:00', '', '', 'null')
+                time: new TimeTracking('null', todayD, todayD, '', '', 'null')
             },
             height: '365px',
             width: '600px'
