@@ -60,6 +60,15 @@ h1 {
     .time-icon {
         display: none;
     }
+
+    button {
+        background: map-get($colors, primary);
+        color: #fff;
+
+        .mat-icon.material-icons {
+            font-size: 16px;
+        }
+    }
 }
 
 p {

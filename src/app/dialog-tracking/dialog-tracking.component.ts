@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MdDialogRef, MD_DIALOG_DATA} from "@angular/material";
 
 @Component({
     selector: 'app-dialog-tracking',
@@ -10,9 +11,13 @@ export class DialogTrackingComponent implements OnInit {
     new_time: FormGroup;
 
     constructor(
-        private form: FormBuilder) { }
+        public dialogRef: MdDialogRef<DialogTrackingComponent>,
+        @Inject(MD_DIALOG_DATA) public data: any,
+        private form: FormBuilder
+    ) {}
 
     ngOnInit() {
+        console.log(this.data);
         this.new_time = this.form.group({
             time_name: ['', [Validators.required]],
             time_description: ['', []],

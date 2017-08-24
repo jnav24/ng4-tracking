@@ -51,6 +51,7 @@ export class DashboardTrackerComponent implements OnInit {
         }
 
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
+            data: { msg: 'hello' },
             height: '435px',
             width: '600px'
         });

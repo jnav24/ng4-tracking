@@ -69,7 +69,9 @@
                 </md-grid-tile>
 
                 <md-grid-tile colspan="1">
-                    Edit
+                    <button md-mini-fab [disabled]="active && int == 0 && d == 0">
+                        <md-icon>edit</md-icon>
+                    </button>
                 </md-grid-tile>
             </md-grid-list>
         </md-card>
