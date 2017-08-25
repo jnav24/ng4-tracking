@@ -13,7 +13,7 @@ export class TimeTrackingService {
     getAllTimes(pid) {
         return this.af.list('times', {
             query: {
-                orderByChild: 'project_id',
+                orderByChild: 'projects_id',
                 equalTo: pid
             }
         });

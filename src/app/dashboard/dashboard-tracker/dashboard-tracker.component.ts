@@ -70,7 +70,31 @@ export class DashboardTrackerComponent implements OnInit {
             this.client = client;
         });
         this.timeTrackingService.getAllTimes(this.projectsService.pid).subscribe(times => {
+            let all_times = [];
+            let all_dates = [];
+            let int = 0;
             console.log(times);
+
+            times.map((time) => {
+                let test1 = new Date(parseInt(time.start_time, 10));
+                let full_date = test1.getMonth().toString() + test1.getDate().toString() + test1.getFullYear().toString();
+
+                console.log(time.start_time);
+                console.log(test1);
+                console.log(full_date);
+
+                if (all_dates.indexOf(full_date) < 0) {
+                    all_dates.push(full_date);
+                    all_times.push({
+                        date: time.start_time,
+                        times: []
+                    });
+                    all_times[int].times.push(time);
+                }
+            });
+
+            console.log(all_times);
+            this.trackings = all_times;
         });
     }
 
@@ -79,11 +103,11 @@ export class DashboardTrackerComponent implements OnInit {
             this.toogleActiveState();
             return;
         }
-        const todayD = new Date();
+        const todayD = new Date().getTime().toString();
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
-                time: new TimeTracking('null', todayD, todayD, '', '')
+                time: new TimeTracking(this.projectsService.pid, todayD, todayD, '', '')
             },
             height: '365px',
             width: '600px'
@@ -112,9 +136,9 @@ export class DashboardTrackerComponent implements OnInit {
         this.active = !this.active;
     }
 
-    calcHours(start: Date, end: Date) {
-        const start_time = start.getTime();
-        const end_time = end.getTime();
+    calcHours(start: string, end: string) {
+        const start_time = new Date(parseInt(start,10)).getTime();
+        const end_time = new Date(parseInt(end,10)).getTime();
 
         if (start_time > end_time) {
             return 4.20;

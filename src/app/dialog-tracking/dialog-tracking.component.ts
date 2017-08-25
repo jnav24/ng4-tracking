@@ -1,6 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MdDialogRef, MD_DIALOG_DATA} from "@angular/material";
+import {TimeTrackingService} from "../common/services/time-tracking.service";
 
 @Component({
     selector: 'app-dialog-tracking',
@@ -11,13 +12,13 @@ export class DialogTrackingComponent implements OnInit {
     new_time: FormGroup;
 
     constructor(
-        public dialogRef: MdDialogRef<DialogTrackingComponent>,
-        @Inject(MD_DIALOG_DATA) public data: any,
-        private form: FormBuilder
+        private dialogRef: MdDialogRef<DialogTrackingComponent>,
+        @Inject(MD_DIALOG_DATA) private data: any,
+        private form: FormBuilder,
+        private timeTrackingService: TimeTrackingService
     ) {}
 
     ngOnInit() {
-        console.log(this.data);
         if (this.data.mode === 'new') {
             this.new_time = this.form.group({
                 time_name: ['', [Validators.required]],
@@ -35,6 +36,15 @@ export class DialogTrackingComponent implements OnInit {
     }
 
     addTimeEntry() {
-        // get the pid
+        this.timeTrackingService.addTime(
+            this.new_time.value.time_name,
+            this.data.time.start_time,
+            this.new_time.value.time_description,
+            this.data.time.projects_id
+        ).then(result => {
+
+        }).catch(e => {
+            console.log(e);
+        });
     }
 }
