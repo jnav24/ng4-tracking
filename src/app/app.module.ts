@@ -21,6 +21,7 @@ import firebaseConfig from './config/firebase.config';
 import { SignInService } from './sign-in/sign-in.service';
 import { ClientsService } from './common/services/clients.service';
 import {ProjectsService} from "./common/services/projects.service";
+import {TimeTrackingService} from "./common/services/time-tracking.service";
 
 // components
 import { AppComponent } from './app.component';
@@ -83,6 +84,7 @@ import { CapitalizePipe } from './common/pipes/capitalize.pipe';
     SignInService,
     ClientsService,
     ProjectsService,
+    TimeTrackingService
   ],
   bootstrap: [AppComponent]
 })

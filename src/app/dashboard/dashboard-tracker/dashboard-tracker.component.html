@@ -7,11 +7,12 @@
                 <div class="logo-container">
                     <img src="assets/images/logo-placeholder-1.png" alt="">
                 </div>
+
                 <div class="info-summary text-left">
-                    <h1>Boros</h1>
-                    <p class="client">One Punch Man</p>
+                    <h1>{{ project?.name }}</h1>
+                    <p class="client">{{ client?.name }}</p>
                     <p class="description">
-                        Brad Bird and Disney's 2015 sci-fi adventure film Tomorrowland is an underrated film that I actually really enjoyed.
+                        {{ project?.description }}
                     </p>
                 </div>
             </md-grid-tile>
@@ -27,7 +28,7 @@
                     class="header-summary outstanding"
                     colspan="1">
                 <md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
-                <p>$1,350.45</p>
+                <p>{{ total_uninvoiced | currency:'USD':true }}</p>
             </md-grid-tile>
 
             <md-grid-tile

@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {MdDialog} from "@angular/material";
 import {DialogTrackingComponent} from "../../dialog-tracking/dialog-tracking.component";
 import {TimeTracking} from "../../common/models/time-tracking.model";
+import {ProjectsService} from "../../common/services/projects.service";
+import {Projects} from "../../common/models/projects.model";
+import {ActivatedRoute} from "@angular/router";
+import {ClientsService} from "../../common/services/clients.service";
+import {Clients} from "../../common/models/clients.model";
+import {TimeTrackingService} from "../../common/services/time-tracking.service";
 
 @Component({
     selector: 'app-dashboard-tracker',
@@ -10,6 +16,8 @@ import {TimeTracking} from "../../common/models/time-tracking.model";
 })
 export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
+    client: Clients[];
+    project: Projects[];
     trackings = [
         {
             date: new Date('August 22, 2017 00:00:00'),
@@ -41,11 +49,29 @@ export class DashboardTrackerComponent implements OnInit {
         }
     ];
     total_hours = 0.00;
+    total_uninvoiced = 0.00;
 
-    constructor(private dialog: MdDialog) { }
+    constructor(
+        private dialog: MdDialog,
+        private clientsService: ClientsService,
+        private projectsService: ProjectsService,
+        private route: ActivatedRoute,
+        private timeTrackingService: TimeTrackingService
+    ) { }
 
     ngOnInit() {
         this.getTotalCalcHours();
+        this.clientsService.cid = this.route.snapshot.params['cid'];
+        this.projectsService.pid = this.route.snapshot.params['pid'];
+        this.projectsService.getProjectById().subscribe(project => {
+            this.project = project;
+        });
+        this.clientsService.getClientDetails(this.clientsService.cid).subscribe(client => {
+            this.client = client;
+        });
+        this.timeTrackingService.getAllTimes(this.projectsService.pid).subscribe(times => {
+            console.log(times);
+        });
     }
 
     openDialog() {
@@ -57,7 +83,7 @@ export class DashboardTrackerComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
-                time: new TimeTracking('null', todayD, todayD, '', '', 'null')
+                time: new TimeTracking('null', todayD, todayD, '', '')
             },
             height: '365px',
             width: '600px'
@@ -105,11 +131,15 @@ export class DashboardTrackerComponent implements OnInit {
         this.trackings.map(tracking => {
             tracking.times.map(time => {
                 let calc_time = this.calcHours(time.start_time, time.end_time);
-                console.log(parseFloat(calc_time.toString()));
                 total += parseFloat(this.calcHours(time.start_time, time.end_time).toString());
             });
         });
 
         this.total_hours = total;
+        this.getTotalUninvoiced();
+    }
+
+    getTotalUninvoiced() {
+
     }
 }

@@ -34,5 +34,7 @@ export class DialogTrackingComponent implements OnInit {
         }
     }
 
-    addTimeEntry() {}
+    addTimeEntry() {
+        // get the pid
+    }
 }

@@ -27,6 +27,10 @@ export class ProjectsService {
         });
     }
 
+    getProjectById() {
+        return this.af.object(`projects/${this.pid}`);
+    }
+
     addProject(name, rate, budget, description) {
         return this.af.database.ref('projects')
             .push(
