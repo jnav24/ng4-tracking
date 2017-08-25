@@ -78,5 +78,14 @@
                 </md-grid-tile>
             </md-grid-list>
         </md-card>
+
+        <md-card *ngIf="!trackings?.length">
+            <div class="empty-state">
+                <md-icon>remove_circle_outline</md-icon>
+                <p>
+                    You do not have any times tracked.<br>Click on the 'Start Timer' button above to add a new time.
+                </p>
+            </div>
+        </md-card>
     </article>
 </section>

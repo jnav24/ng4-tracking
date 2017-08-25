@@ -19,34 +19,34 @@ export class DashboardTrackerComponent implements OnInit {
     client: Clients[];
     project: Projects[];
     trackings = [
-        {
-            date: new Date('August 22, 2017 00:00:00'),
-            times: [
-                {
-                    title: 'Punch Boros',
-                    description: 'punch him in the face',
-                    start_time: new Date('August 22, 2017 08:27:19'),
-                    end_time: new Date('August 22, 2017 14:36:23')
-                },
-                {
-                    title: 'Attack Aliens',
-                    description: 'Find the alien leader and punch him in the face',
-                    start_time: new Date('August 22, 2017 07:16:00'),
-                    end_time: new Date('August 22, 2017 15:26:00')
-                }
-            ]
-        },
-        {
-            date: new Date('August 21, 2017 00:00:00'),
-            times: [
-                {
-                    title: 'Go Shopping',
-                    description: 'There is a sale on seaweed that helps with hair growth',
-                    start_time: new Date('August 22, 2017 10:03:00'),
-                    end_time: new Date('August 22, 2017 17:48:00')
-                }
-            ]
-        }
+        // {
+        //     date: new Date('August 22, 2017 00:00:00'),
+        //     times: [
+        //         {
+        //             title: 'Punch Boros',
+        //             description: 'punch him in the face',
+        //             start_time: new Date('August 22, 2017 08:27:19'),
+        //             end_time: new Date('August 22, 2017 14:36:23')
+        //         },
+        //         {
+        //             title: 'Attack Aliens',
+        //             description: 'Find the alien leader and punch him in the face',
+        //             start_time: new Date('August 22, 2017 07:16:00'),
+        //             end_time: new Date('August 22, 2017 15:26:00')
+        //         }
+        //     ]
+        // },
+        // {
+        //     date: new Date('August 21, 2017 00:00:00'),
+        //     times: [
+        //         {
+        //             title: 'Go Shopping',
+        //             description: 'There is a sale on seaweed that helps with hair growth',
+        //             start_time: new Date('August 22, 2017 10:03:00'),
+        //             end_time: new Date('August 22, 2017 17:48:00')
+        //         }
+        //     ]
+        // }
     ];
     total_hours = 0.00;
     total_uninvoiced = 0.00;
