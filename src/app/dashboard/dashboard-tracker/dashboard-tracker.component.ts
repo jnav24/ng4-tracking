@@ -72,29 +72,35 @@ export class DashboardTrackerComponent implements OnInit {
         this.timeTrackingService.getAllTimes(this.projectsService.pid).subscribe(times => {
             let all_times = [];
             let all_dates = [];
-            let int = 0;
-            console.log(times);
+            let int = -1;
 
             times.map((time) => {
-                let test1 = new Date(parseInt(time.start_time, 10));
-                let full_date = test1.getMonth().toString() + test1.getDate().toString() + test1.getFullYear().toString();
-
-                console.log(time.start_time);
-                console.log(test1);
-                console.log(full_date);
+                let main_date = new Date(parseInt(time.start_time, 10));
+                let full_date = main_date.getMonth().toString() + main_date.getDate().toString() + main_date.getFullYear().toString();
 
                 if (all_dates.indexOf(full_date) < 0) {
+                    if (typeof all_times[int] !== 'undefined') {
+                        all_times[int].times = all_times[int].times.reverse();
+                    }
+
+                    int++;
+
                     all_dates.push(full_date);
                     all_times.push({
-                        date: time.start_time,
+                        date: main_date,
                         times: []
                     });
+
+                    all_times[int].times.push(time);
+                }
+                else {
                     all_times[int].times.push(time);
                 }
             });
 
-            console.log(all_times);
-            this.trackings = all_times;
+            const last_index = (all_times.length - 1);
+            all_times[last_index].times = all_times[last_index].times.reverse();
+            this.trackings = all_times.reverse();
         });
     }
 
