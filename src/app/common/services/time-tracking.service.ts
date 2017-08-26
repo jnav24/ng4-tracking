@@ -4,8 +4,6 @@ import {TimeTracking} from "../models/time-tracking.model";
 
 @Injectable()
 export class TimeTrackingService {
-    tid: string;
-
     constructor(
         private af: AngularFireDatabase
     ) { }
@@ -43,5 +41,9 @@ export class TimeTrackingService {
                     title
                 )
             );
+    }
+
+    addEndTime(tid, time) {
+        return this.af.object(`times/${tid}`).update({ end_time: time });
     }
 }

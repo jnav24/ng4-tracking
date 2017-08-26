@@ -18,6 +18,7 @@ export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
     client: Clients[];
     project: Projects[];
+    tid: string;
     trackings = [
         // {
         //     date: new Date('August 22, 2017 00:00:00'),
@@ -63,12 +64,15 @@ export class DashboardTrackerComponent implements OnInit {
         this.getTotalCalcHours();
         this.clientsService.cid = this.route.snapshot.params['cid'];
         this.projectsService.pid = this.route.snapshot.params['pid'];
+
         this.projectsService.getProjectById().subscribe(project => {
             this.project = project;
         });
+
         this.clientsService.getClientDetails(this.clientsService.cid).subscribe(client => {
             this.client = client;
         });
+
         this.timeTrackingService.getAllTimes(this.projectsService.pid).subscribe(times => {
             let all_times = [];
             let all_dates = [];
@@ -106,6 +110,7 @@ export class DashboardTrackerComponent implements OnInit {
 
     openDialog() {
         if (this.active) {
+            this.stopTimer();
             this.toogleActiveState();
             return;
         }
@@ -121,6 +126,7 @@ export class DashboardTrackerComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
+                this.tid = this.trackings[0].times[0].$key;
                 this.toogleActiveState();
             }
         });
@@ -171,5 +177,10 @@ export class DashboardTrackerComponent implements OnInit {
 
     getTotalUninvoiced() {
 
+    }
+
+    stopTimer() {
+        const time = new Date().getTime().toString();
+        this.timeTrackingService.addEndTime(this.tid, time);
     }
 }
