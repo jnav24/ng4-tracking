@@ -20,8 +20,8 @@ export class DashboardTrackerComponent implements OnInit {
     project: Projects[];
     tid: string;
     trackings = [];
-    total_hours = 0.00;
-    total_uninvoiced = 0.00;
+    total_hours;
+    total_uninvoiced;
 
     constructor(
         private dialog: MdDialog,
@@ -32,7 +32,6 @@ export class DashboardTrackerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getTotalCalcHours();
         this.clientsService.cid = this.route.snapshot.params['cid'];
         this.projectsService.pid = this.route.snapshot.params['pid'];
 
@@ -76,6 +75,7 @@ export class DashboardTrackerComponent implements OnInit {
             const last_index = (all_times.length - 1);
             all_times[last_index].times = all_times[last_index].times.reverse();
             this.trackings = all_times.reverse();
+            this.getTotalCalcHours();
         });
     }
 
@@ -146,12 +146,17 @@ export class DashboardTrackerComponent implements OnInit {
             });
         });
 
-        this.total_hours = total;
+        this.total_hours = parseFloat(total.toString()).toFixed(2);
         this.getTotalUninvoiced();
     }
 
     getTotalUninvoiced() {
+        if (this.project['rate'].trim() === '') {
+            return this.total_uninvoiced = 0.00;
+        }
 
+        const amount = (this.total_hours*this.project['rate']);
+        this.total_uninvoiced = parseFloat(amount.toString()).toFixed(2);
     }
 
     stopTimer() {
