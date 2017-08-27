@@ -46,4 +46,29 @@ export class TimeTrackingService {
     addEndTime(tid, time) {
         return this.af.object(`times/${tid}`).update({ end_time: time });
     }
+
+    saveTime(title, start, end, description, pid, tid) {
+        return this.af.database.ref(`times/${tid}`)
+            .update(
+                new TimeTracking(
+                    pid,
+                    start,
+                    end,
+                    description,
+                    title
+                )
+            );
+    }
+
+    getCurrentTimestampAsString(): string {
+        return new Date().getTime().toString();
+    }
+
+    getCurrentTimestampFromUnixString(time: string): number {
+        return this.getDate(time).getTime();
+    }
+
+    getDate(time): Date {
+        return new Date(parseInt(time, 10));
+    }
 }

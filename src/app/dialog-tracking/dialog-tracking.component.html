@@ -26,10 +26,20 @@
 
 <md-dialog-actions>
     <button md-button md-dialog-close>Cancel</button>
+
     <button md-raised-button
+          *ngIf="data.mode === 'new'"
           class="success"
           [md-dialog-close]="true"
           [disabled]="!new_time.valid"
           [ngClass]="{'disabled': !new_time.valid}"
           (click)="addTimeEntry()">Add</button>
+
+    <button md-raised-button
+          *ngIf="data.mode === 'edit'"
+          class="success"
+          [md-dialog-close]="true"
+          [disabled]="!new_time.valid"
+          [ngClass]="{'disabled': !new_time.valid}"
+          (click)="saveTimeEntry()">Save Edit</button>
 </md-dialog-actions>

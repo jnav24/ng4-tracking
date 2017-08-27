@@ -19,36 +19,7 @@ export class DashboardTrackerComponent implements OnInit {
     client: Clients[];
     project: Projects[];
     tid: string;
-    trackings = [
-        // {
-        //     date: new Date('August 22, 2017 00:00:00'),
-        //     times: [
-        //         {
-        //             title: 'Punch Boros',
-        //             description: 'punch him in the face',
-        //             start_time: new Date('August 22, 2017 08:27:19'),
-        //             end_time: new Date('August 22, 2017 14:36:23')
-        //         },
-        //         {
-        //             title: 'Attack Aliens',
-        //             description: 'Find the alien leader and punch him in the face',
-        //             start_time: new Date('August 22, 2017 07:16:00'),
-        //             end_time: new Date('August 22, 2017 15:26:00')
-        //         }
-        //     ]
-        // },
-        // {
-        //     date: new Date('August 21, 2017 00:00:00'),
-        //     times: [
-        //         {
-        //             title: 'Go Shopping',
-        //             description: 'There is a sale on seaweed that helps with hair growth',
-        //             start_time: new Date('August 22, 2017 10:03:00'),
-        //             end_time: new Date('August 22, 2017 17:48:00')
-        //         }
-        //     ]
-        // }
-    ];
+    trackings = [];
     total_hours = 0.00;
     total_uninvoiced = 0.00;
 
@@ -79,7 +50,7 @@ export class DashboardTrackerComponent implements OnInit {
             let int = -1;
 
             times.map((time) => {
-                let main_date = new Date(parseInt(time.start_time, 10));
+                let main_date = this.timeTrackingService.getDate(time.start_time);
                 let full_date = main_date.getMonth().toString() + main_date.getDate().toString() + main_date.getFullYear().toString();
 
                 if (all_dates.indexOf(full_date) < 0) {
@@ -114,7 +85,7 @@ export class DashboardTrackerComponent implements OnInit {
             this.toogleActiveState();
             return;
         }
-        const todayD = new Date().getTime().toString();
+        const todayD = this.timeTrackingService.getCurrentTimestampAsString();
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
@@ -133,11 +104,15 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     openEditDialog(int: number, index: number) {
-        console.log(this.trackings[index]['times'][int]);
-        const dialogRef = this.dialog.open(DialogTrackingComponent, {
+        let current_time = Object.assign({}, this.trackings[index]['times'][int]);
+        current_time.start_time = this.timeTrackingService.getDate(current_time.start_time);
+        current_time.end_time = this.timeTrackingService.getDate(current_time.end_time);
+        current_time.tid = this.trackings[index]['times'][int].$key;
+
+        this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'edit',
-                time: this.trackings[index]['times'][int]
+                time: current_time
             },
             height: '435px',
             width: '600px'
@@ -149,8 +124,8 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     calcHours(start: string, end: string) {
-        const start_time = new Date(parseInt(start,10)).getTime();
-        const end_time = new Date(parseInt(end,10)).getTime();
+        const start_time = this.timeTrackingService.getCurrentTimestampFromUnixString(start);
+        const end_time = this.timeTrackingService.getCurrentTimestampFromUnixString(end);
 
         if (start_time > end_time) {
             return 4.20;
@@ -180,7 +155,7 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     stopTimer() {
-        const time = new Date().getTime().toString();
+        const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.timeTrackingService.addEndTime(this.tid, time);
     }
 }
