@@ -17,8 +17,12 @@ import {TimeTrackingService} from "../../common/services/time-tracking.service";
 export class DashboardTrackerComponent implements OnInit {
     active: boolean = false;
     client: Clients[];
+    hour = '0'+0;
+    minute = '0'+0;
+    second = '0'+0;
     project: Projects[];
     tid: string;
+    timer;
     trackings = [];
     total_hours;
     total_uninvoiced;
@@ -29,7 +33,7 @@ export class DashboardTrackerComponent implements OnInit {
         private projectsService: ProjectsService,
         private route: ActivatedRoute,
         private timeTrackingService: TimeTrackingService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.clientsService.cid = this.route.snapshot.params['cid'];
@@ -98,6 +102,7 @@ export class DashboardTrackerComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.tid = this.trackings[0].times[0].$key;
+                this.startTimer();
                 this.toogleActiveState();
             }
         });
@@ -159,8 +164,51 @@ export class DashboardTrackerComponent implements OnInit {
         this.total_uninvoiced = parseFloat(amount.toString()).toFixed(2);
     }
 
+    startTimer() {
+        let hour = 0;
+        let minute = 0;
+        let second = 0;
+
+        this.timer = setInterval(() => {
+            second = second + 1;
+
+            if (second > 59) {
+                this.second = '0'+0;
+                second = 0;
+                minute++;
+                this.minute = this.getTime(minute);
+
+                if (minute > 59) {
+                    this.minute = '0' + 0;
+                    minute = 0;
+                    hour++;
+                    this.hour = this.getTime(hour);
+                }
+            }
+
+            this.second = this.getTime(second);
+        }, 1000);
+    }
+
     stopTimer() {
+        clearInterval(this.timer);
+        this.resetTimer();
         const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.timeTrackingService.addEndTime(this.tid, time);
+    }
+
+    private getTime(time) {
+        if (time < 10) {
+            return '0' + time;
+        }
+
+        return time;
+    }
+
+    private resetTimer() {
+        this.hour = '0'+0;
+        this.minute = '0'+0;
+        this.second = '0'+0;
+        this.timer = undefined;
     }
 }

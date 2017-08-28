@@ -35,7 +35,11 @@
                     [ngClass]="{'active': active}"
                     class="timer"
                     colspan="1">
-                <md-grid-tile-header><p>00:00:00</p></md-grid-tile-header>
+                <md-grid-tile-header>
+                    <p>
+                        {{ hour }}:{{ minute }}:{{ second }}
+                    </p>
+                </md-grid-tile-header>
                 <button
                         md-raised-button
                         (click)="openDialog()"
