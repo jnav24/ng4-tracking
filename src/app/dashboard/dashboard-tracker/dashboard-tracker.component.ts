@@ -41,6 +41,29 @@ export class DashboardTrackerComponent implements OnInit {
 
         this.projectsService.getProjectById().subscribe(project => {
             this.project = project;
+            this.active = project.active;
+
+            if (project.active) {
+                const time_left = this.timeTrackingService.getCurrentTimestampFromUnixString(project.time_left);
+                const current_time = this.timeTrackingService.getCurrentTimestampFromUnixString(
+                    this.timeTrackingService.getCurrentTimestampAsString()
+                );
+                let time_diff = (current_time-time_left);
+
+                console.log(time_left);
+                console.log(current_time);
+                console.log(time_diff);//4037
+
+                console.log(new Date(time_left).getDay());
+                console.log(new Date(time_left).getHours());
+                console.log(new Date(time_left).getMinutes());
+                console.log(new Date(time_left).getSeconds());
+
+                console.log(new Date(current_time).getDay());
+                console.log(new Date(current_time).getHours());
+                console.log(new Date(current_time).getMinutes());
+                console.log(new Date(current_time).getSeconds());
+            }
         });
 
         this.clientsService.getClientDetails(this.clientsService.cid).subscribe(client => {
@@ -102,8 +125,7 @@ export class DashboardTrackerComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.tid = this.trackings[0].times[0].$key;
-                this.startTimer();
-                this.toogleActiveState();
+                this.setActiveState();
             }
         });
     }
@@ -164,7 +186,7 @@ export class DashboardTrackerComponent implements OnInit {
         this.total_uninvoiced = parseFloat(amount.toString()).toFixed(2);
     }
 
-    startTimer() {
+    private startTimer() {
         let hour = 0;
         let minute = 0;
         let second = 0;
@@ -190,7 +212,7 @@ export class DashboardTrackerComponent implements OnInit {
         }, 1000);
     }
 
-    stopTimer() {
+    private stopTimer() {
         clearInterval(this.timer);
         this.resetTimer();
         const time = this.timeTrackingService.getCurrentTimestampAsString();
@@ -210,5 +232,17 @@ export class DashboardTrackerComponent implements OnInit {
         this.minute = '0'+0;
         this.second = '0'+0;
         this.timer = undefined;
+    }
+
+    private setActiveState() {
+        const time = this.timeTrackingService.getCurrentTimestampAsString();
+        this.projectsService.setActiveStatus(true, time)
+            .then(result => {
+                this.startTimer();
+                this.toogleActiveState();
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 }

@@ -39,7 +39,9 @@ export class ProjectsService {
                     name,
                     budget,
                     rate,
-                    description
+                    description,
+                    false,
+                    "0"
                 )
             );
     }
@@ -55,5 +57,13 @@ export class ProjectsService {
         const uid = this.signInService.uid;
         const cid = this.clientsService.cid;
         this.router.navigate([`dashboard/${uid}/${cid}/${id}`]);
+    }
+
+    setActiveStatus(active, time) {
+        return this.af.database.ref('projects')
+            .update({
+                active: active,
+                time_left: time
+            });
     }
 }

@@ -4,6 +4,8 @@ export class Projects {
 		public name: string,
 		public budget: string,
 		public rate: string,
-		public description: string
+		public description: string,
+		public active: boolean,
+		public time_left: string
 	) {}
 }
