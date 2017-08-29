@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ClientsService} from "../../common/services/clients.service";
 import {Clients} from "../../common/models/clients.model";
 import {TimeTrackingService} from "../../common/services/time-tracking.service";
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-dashboard-tracker',
@@ -50,19 +51,30 @@ export class DashboardTrackerComponent implements OnInit {
                 );
                 let time_diff = (current_time-time_left);
 
-                console.log(time_left);
-                console.log(current_time);
-                console.log(time_diff);//4037
+                // console.log(new Date(1503928248462).getFullYear());
+                // console.log(moment.unix(1503928248462).format('MMMM DD, YYYY'));
+                var now  = "08/29/2017 10:00:00";
+                var then = "08/28/2017 14:20:30";
 
-                console.log(new Date(time_left).getDay());
-                console.log(new Date(time_left).getHours());
-                console.log(new Date(time_left).getMinutes());
-                console.log(new Date(time_left).getSeconds());
+                // console.log(moment.unix().toString());
+                console.log(moment(time_left).format('MMMM DD, YYYY'));
+                console.log(moment.utc(moment(time_left).diff(moment())).format("HH:mm:ss"));
+                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("HH:mm:ss"));
 
-                console.log(new Date(current_time).getDay());
-                console.log(new Date(current_time).getHours());
-                console.log(new Date(current_time).getMinutes());
-                console.log(new Date(current_time).getSeconds());
+
+                // console.log(time_left);
+                // console.log(current_time);
+                // console.log(time_diff);//4037
+                //
+                // console.log(new Date(time_left).getDay());
+                // console.log(new Date(time_left).getHours());
+                // console.log(new Date(time_left).getMinutes());
+                // console.log(new Date(time_left).getSeconds());
+                //
+                // console.log(new Date(current_time).getDay());
+                // console.log(new Date(current_time).getHours());
+                // console.log(new Date(current_time).getMinutes());
+                // console.log(new Date(current_time).getSeconds());
             }
         });
 
