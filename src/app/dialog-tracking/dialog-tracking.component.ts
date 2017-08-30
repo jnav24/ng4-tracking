@@ -2,6 +2,7 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MdDialogRef, MD_DIALOG_DATA} from "@angular/material";
 import {TimeTrackingService} from "../common/services/time-tracking.service";
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-dialog-tracking',
@@ -51,20 +52,25 @@ export class DialogTrackingComponent implements OnInit {
     saveTimeEntry() {
         let start = this.new_time.value.time_start.split(':');
         let end = this.new_time.value.time_end.split(':');
+
+        moment(this.data.time.start_time).set({
+            'hour': '',
+            'minute': ''
+        });
         this.data.time.start_time.setHours(start[0], start[1]);
         this.data.time.end_time.setHours(end[0], end[1]);
 
-        this.timeTrackingService.saveTime(
-            this.new_time.value.time_name,
-            this.data.time.start_time.getTime().toString(),
-            this.data.time.end_time.getTime().toString(),
-            this.new_time.value.time_description,
-            this.data.time.projects_id,
-            this.data.time.tid
-        ).then(result => {
-
-        }).catch(e => {
-            console.log(e);
-        });
+        // this.timeTrackingService.saveTime(
+        //     this.new_time.value.time_name,
+        //     this.data.time.start_time.getTime().toString(),
+        //     this.data.time.end_time.getTime().toString(),
+        //     this.new_time.value.time_description,
+        //     this.data.time.projects_id,
+        //     this.data.time.tid
+        // ).then(result => {
+        //
+        // }).catch(e => {
+        //     console.log(e);
+        // });
     }
 }

@@ -50,7 +50,7 @@ export class DashboardTrackerComponent implements OnInit {
                     this.timeTrackingService.getCurrentTimestampAsString()
                 );
                 let time_diff = (current_time-time_left);
-
+console.log(moment().toString());
                 // console.log(new Date(1503928248462).getFullYear());
                 // console.log(moment.unix(1503928248462).format('MMMM DD, YYYY'));
                 var now  = "08/29/2017 10:00:00";
@@ -60,21 +60,8 @@ export class DashboardTrackerComponent implements OnInit {
                 console.log(moment(time_left).format('MMMM DD, YYYY'));
                 console.log(moment.utc(moment(time_left).diff(moment())).format("HH:mm:ss"));
                 console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("HH:mm:ss"));
-
-
-                // console.log(time_left);
-                // console.log(current_time);
-                // console.log(time_diff);//4037
-                //
-                // console.log(new Date(time_left).getDay());
-                // console.log(new Date(time_left).getHours());
-                // console.log(new Date(time_left).getMinutes());
-                // console.log(new Date(time_left).getSeconds());
-                //
-                // console.log(new Date(current_time).getDay());
-                // console.log(new Date(current_time).getHours());
-                // console.log(new Date(current_time).getMinutes());
-                // console.log(new Date(current_time).getSeconds());
+                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("HH"));
+                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("mm"));
             }
         });
 
@@ -83,38 +70,44 @@ export class DashboardTrackerComponent implements OnInit {
         });
 
         this.timeTrackingService.getAllTimes(this.projectsService.pid).subscribe(times => {
-            let all_times = [];
-            let all_dates = [];
-            let int = -1;
+            if (times.length) {
+                let all_times = [];
+                let all_dates = [];
+                let int = -1;
 
-            times.map((time) => {
-                let main_date = this.timeTrackingService.getDate(time.start_time);
-                let full_date = main_date.getMonth().toString() + main_date.getDate().toString() + main_date.getFullYear().toString();
+                times.map((time) => {
+                    let main_date = moment(time.start_time);
+                    let full_date = main_date.format('MMDDYYYY');
 
-                if (all_dates.indexOf(full_date) < 0) {
-                    if (typeof all_times[int] !== 'undefined') {
-                        all_times[int].times = all_times[int].times.reverse();
+                    if (all_dates.indexOf(full_date) < 0) {
+                        if (typeof all_times[int] !== 'undefined') {
+                            all_times[int].times = all_times[int].times.reverse();
+                        }
+
+                        int++;
+
+                        all_dates.push(full_date);
+                        all_times.push({
+                            date: main_date,
+                            times: []
+                        });
+
+                        all_times[int].times.push(time);
                     }
+                    else {
+                        all_times[int].times.push(time);
+                    }
+                });
 
-                    int++;
-
-                    all_dates.push(full_date);
-                    all_times.push({
-                        date: main_date,
-                        times: []
-                    });
-
-                    all_times[int].times.push(time);
-                }
-                else {
-                    all_times[int].times.push(time);
-                }
-            });
-
-            const last_index = (all_times.length - 1);
-            all_times[last_index].times = all_times[last_index].times.reverse();
-            this.trackings = all_times.reverse();
-            this.getTotalCalcHours();
+                const last_index = (all_times.length - 1);
+                all_times[last_index].times = all_times[last_index].times.reverse();
+                this.trackings = all_times.reverse();
+                this.getTotalCalcHours();
+            }
+            else {
+                this.total_hours = '0.00';
+                this.total_uninvoiced = '0.00';
+            }
         });
     }
 
@@ -124,7 +117,8 @@ export class DashboardTrackerComponent implements OnInit {
             this.toogleActiveState();
             return;
         }
-        const todayD = this.timeTrackingService.getCurrentTimestampAsString();
+
+        const todayD = moment().toString();
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
@@ -163,16 +157,11 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     calcHours(start: string, end: string) {
-        const start_time = this.timeTrackingService.getCurrentTimestampFromUnixString(start);
-        const end_time = this.timeTrackingService.getCurrentTimestampFromUnixString(end);
+        const time_diff = moment.utc(moment(end).diff(moment(start)));
+        const exact_hours = parseInt(time_diff.format("H"),10);
+        const exact_mins = parseInt(time_diff.format("mm"), 10)/60;
 
-        if (start_time > end_time) {
-            return 4.20;
-        }
-
-        const exact_hours = Math.abs(end_time - start_time)/(60*60*1000);
-
-        return parseFloat(exact_hours.toString()).toFixed(2);
+        return parseFloat((exact_hours+exact_mins).toString()).toFixed(2);
     }
 
     getTotalCalcHours() {
