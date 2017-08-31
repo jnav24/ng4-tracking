@@ -8,7 +8,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ClientsService} from "../../common/services/clients.service";
 import {Clients} from "../../common/models/clients.model";
 import {TimeTrackingService} from "../../common/services/time-tracking.service";
-import * as moment from 'moment';
 
 @Component({
     selector: 'app-dashboard-tracker',
@@ -45,7 +44,7 @@ export class DashboardTrackerComponent implements OnInit {
             this.active = project.active;
 
             if (project.active) {
-                const time_diff = moment.utc(moment().diff(moment(project.time_left)));
+                const time_diff = this.timeTrackingService.getDifferenceBetweenTimes(project.time_left);
                 this.hour = time_diff.format("HH");
                 this.minute = time_diff.format("mm");
                 this.second = time_diff.format("ss");
@@ -64,7 +63,7 @@ export class DashboardTrackerComponent implements OnInit {
                 let int = -1;
 
                 times.map((time) => {
-                    let main_date = moment(time.start_time);
+                    let main_date = this.timeTrackingService.getDateTime(time.start_time);
                     let full_date = main_date.format('MMDDYYYY');
 
                     if (all_dates.indexOf(full_date) < 0) {
@@ -106,7 +105,7 @@ export class DashboardTrackerComponent implements OnInit {
             return;
         }
 
-        const todayD = moment().toString();
+        const todayD = this.timeTrackingService.getCurrentTimestampAsString();
         const dialogRef = this.dialog.open(DialogTrackingComponent, {
             data: {
                 mode: 'new',
@@ -143,7 +142,7 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     calcHours(start: string, end: string) {
-        const time_diff = moment.utc(moment(end).diff(moment(start)));
+        const time_diff = this.timeTrackingService.getDifferenceBetweenTimes(start, end);
         const exact_hours = parseInt(time_diff.format("H"),10);
         const exact_mins = parseInt(time_diff.format("mm"), 10)/60;
 
@@ -198,7 +197,7 @@ export class DashboardTrackerComponent implements OnInit {
     private stopTimer() {
         clearInterval(this.timer);
         this.resetTimer();
-        const time = moment().toString();
+        const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.timeTrackingService.addEndTime(this.tid, time);
     }
 
@@ -218,7 +217,7 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     private setActiveState() {
-        const time = moment().toString();
+        const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.projectsService.setActiveStatus(true, time)
             .then(result => {
                 this.startTimer();

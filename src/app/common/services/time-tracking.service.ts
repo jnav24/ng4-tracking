@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "angularfire2/database/database";
 import {TimeTracking} from "../models/time-tracking.model";
+import * as moment from 'moment';
 
 @Injectable()
 export class TimeTrackingService {
@@ -61,14 +62,30 @@ export class TimeTrackingService {
     }
 
     getCurrentTimestampAsString(): string {
-        return new Date().getTime().toString();
+        return moment().toString();
     }
 
-    getCurrentTimestampFromUnixString(time: string): number {
-        return this.getDate(time).getTime();
+    getDateTime(time: string = '') {
+        let set_time = moment();
+
+        if (time.trim() !== '') {
+            set_time = moment(time);
+        }
+
+        return set_time;
     }
 
-    getDate(time): Date {
-        return new Date(parseInt(time, 10));
+    setTime(time: string, obj: object) {
+        return this.getDateTime(time).set(obj);
+    }
+
+    getDifferenceBetweenTimes(start, end = '') {
+        let end_time = moment();
+
+        if (end.trim() !== '') {
+            end_time = moment(end);
+        }
+
+        return moment.utc(end_time.diff(moment(start)));
     }
 }

@@ -2,7 +2,6 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MdDialogRef, MD_DIALOG_DATA} from "@angular/material";
 import {TimeTrackingService} from "../common/services/time-tracking.service";
-import * as moment from 'moment';
 
 @Component({
     selector: 'app-dialog-tracking',
@@ -53,12 +52,12 @@ export class DialogTrackingComponent implements OnInit {
         let start = this.new_time.value.time_start.split(':');
         let end = this.new_time.value.time_end.split(':');
 
-        const start_time = moment(this.data.time.start_time).set({
+        const start_time = this.timeTrackingService.setTime(this.data.time.start_time, {
             'hour': start[0],
             'minute': start[1]
         });
 
-        const end_time = moment(this.data.time.end_time).set({
+        const end_time = this.timeTrackingService.setTime(this.data.time.end_time, {
             'hour': end[0],
             'minute': end[1]
         });
