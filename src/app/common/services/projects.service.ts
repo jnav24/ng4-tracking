@@ -59,8 +59,8 @@ export class ProjectsService {
         this.router.navigate([`dashboard/${uid}/${cid}/${id}`]);
     }
 
-    setActiveStatus(active, time) {
-        return this.af.database.ref('projects')
+    setActiveStatus(pid, active, time) {
+        return this.af.database.ref(`projects/${pid}`)
             .update({
                 active: active,
                 time_left: time

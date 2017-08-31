@@ -90,12 +90,14 @@ export class DashboardTrackerComponent implements OnInit {
                 all_times[last_index].times = all_times[last_index].times.reverse();
                 this.trackings = all_times.reverse();
                 this.getTotalCalcHours();
+                this.tid = this.trackings[0].times[0].$key;
             }
             else {
                 this.total_hours = '0.00';
                 this.total_uninvoiced = '0.00';
             }
         });
+        console.log(this.active);
     }
 
     openDialog() {
@@ -139,6 +141,7 @@ export class DashboardTrackerComponent implements OnInit {
 
     toogleActiveState() {
         this.active = !this.active;
+        console.log(this.active);
     }
 
     calcHours(start: string, end: string) {
@@ -199,6 +202,7 @@ export class DashboardTrackerComponent implements OnInit {
         this.resetTimer();
         const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.timeTrackingService.addEndTime(this.tid, time);
+        this.projectsService.setActiveStatus(this.projectsService.pid, false, '0');
     }
 
     private getTime(time) {
@@ -218,7 +222,7 @@ export class DashboardTrackerComponent implements OnInit {
 
     private setActiveState() {
         const time = this.timeTrackingService.getCurrentTimestampAsString();
-        this.projectsService.setActiveStatus(true, time)
+        this.projectsService.setActiveStatus(this.projectsService.pid, true, time)
             .then(result => {
                 this.startTimer();
                 this.toogleActiveState();
