@@ -45,23 +45,11 @@ export class DashboardTrackerComponent implements OnInit {
             this.active = project.active;
 
             if (project.active) {
-                const time_left = this.timeTrackingService.getCurrentTimestampFromUnixString(project.time_left);
-                const current_time = this.timeTrackingService.getCurrentTimestampFromUnixString(
-                    this.timeTrackingService.getCurrentTimestampAsString()
-                );
-                let time_diff = (current_time-time_left);
-console.log(moment().toString());
-                // console.log(new Date(1503928248462).getFullYear());
-                // console.log(moment.unix(1503928248462).format('MMMM DD, YYYY'));
-                var now  = "08/29/2017 10:00:00";
-                var then = "08/28/2017 14:20:30";
-
-                // console.log(moment.unix().toString());
-                console.log(moment(time_left).format('MMMM DD, YYYY'));
-                console.log(moment.utc(moment(time_left).diff(moment())).format("HH:mm:ss"));
-                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("HH:mm:ss"));
-                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("HH"));
-                console.log(moment.utc(moment(now,"MM/DD//YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"))).format("mm"));
+                const time_diff = moment.utc(moment().diff(moment(project.time_left)));
+                this.hour = time_diff.format("HH");
+                this.minute = time_diff.format("mm");
+                this.second = time_diff.format("ss");
+                this.startTimer(parseInt(this.hour,10), parseInt(this.minute,10), parseInt(this.second,10));
             }
         });
 
@@ -185,11 +173,7 @@ console.log(moment().toString());
         this.total_uninvoiced = parseFloat(amount.toString()).toFixed(2);
     }
 
-    private startTimer() {
-        let hour = 0;
-        let minute = 0;
-        let second = 0;
-
+    private startTimer(hour = 0, minute = 0, second = 0) {
         this.timer = setInterval(() => {
             second = second + 1;
 
