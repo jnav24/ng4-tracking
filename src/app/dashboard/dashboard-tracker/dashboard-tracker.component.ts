@@ -214,7 +214,7 @@ console.log(moment().toString());
     private stopTimer() {
         clearInterval(this.timer);
         this.resetTimer();
-        const time = this.timeTrackingService.getCurrentTimestampAsString();
+        const time = moment().toString();
         this.timeTrackingService.addEndTime(this.tid, time);
     }
 
@@ -234,7 +234,7 @@ console.log(moment().toString());
     }
 
     private setActiveState() {
-        const time = this.timeTrackingService.getCurrentTimestampAsString();
+        const time = moment().toString();
         this.projectsService.setActiveStatus(true, time)
             .then(result => {
                 this.startTimer();
