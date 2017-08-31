@@ -53,24 +53,27 @@ export class DialogTrackingComponent implements OnInit {
         let start = this.new_time.value.time_start.split(':');
         let end = this.new_time.value.time_end.split(':');
 
-        moment(this.data.time.start_time).set({
-            'hour': '',
-            'minute': ''
+        const start_time = moment(this.data.time.start_time).set({
+            'hour': start[0],
+            'minute': start[1]
         });
-        this.data.time.start_time.setHours(start[0], start[1]);
-        this.data.time.end_time.setHours(end[0], end[1]);
 
-        // this.timeTrackingService.saveTime(
-        //     this.new_time.value.time_name,
-        //     this.data.time.start_time.getTime().toString(),
-        //     this.data.time.end_time.getTime().toString(),
-        //     this.new_time.value.time_description,
-        //     this.data.time.projects_id,
-        //     this.data.time.tid
-        // ).then(result => {
-        //
-        // }).catch(e => {
-        //     console.log(e);
-        // });
+        const end_time = moment(this.data.time.end_time).set({
+            'hour': end[0],
+            'minute': end[1]
+        });
+
+        this.timeTrackingService.saveTime(
+            this.new_time.value.time_name,
+            start_time.toString(),
+            end_time.toString(),
+            this.new_time.value.time_description,
+            this.data.time.projects_id,
+            this.data.time.tid
+        ).then(result => {
+
+        }).catch(e => {
+            console.log(e);
+        });
     }
 }

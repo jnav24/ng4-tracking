@@ -138,8 +138,6 @@ console.log(moment().toString());
 
     openEditDialog(int: number, index: number) {
         let current_time = Object.assign({}, this.trackings[index]['times'][int]);
-        current_time.start_time = this.timeTrackingService.getDate(current_time.start_time);
-        current_time.end_time = this.timeTrackingService.getDate(current_time.end_time);
         current_time.tid = this.trackings[index]['times'][int].$key;
 
         this.dialog.open(DialogTrackingComponent, {
