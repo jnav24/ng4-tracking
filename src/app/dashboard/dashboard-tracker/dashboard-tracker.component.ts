@@ -101,9 +101,10 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     openDialog() {
+        console.log(this.active);
         if (this.active) {
             this.stopTimer();
-            this.toogleActiveState();
+            this.active = false;
             return;
         }
 
@@ -198,11 +199,13 @@ export class DashboardTrackerComponent implements OnInit {
     }
 
     private stopTimer() {
-        clearInterval(this.timer);
+        console.log(this.timer);
+        console.log(clearInterval(this.timer));
         this.resetTimer();
         const time = this.timeTrackingService.getCurrentTimestampAsString();
         this.timeTrackingService.addEndTime(this.tid, time);
         this.projectsService.setActiveStatus(this.projectsService.pid, false, '0');
+        console.log('hmm... end...');
     }
 
     private getTime(time) {
@@ -225,7 +228,7 @@ export class DashboardTrackerComponent implements OnInit {
         this.projectsService.setActiveStatus(this.projectsService.pid, true, time)
             .then(result => {
                 this.startTimer();
-                this.toogleActiveState();
+                this.active = true;
             })
             .catch(e => {
                 console.log(e);

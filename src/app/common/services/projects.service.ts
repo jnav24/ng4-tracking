@@ -18,11 +18,11 @@ export class ProjectsService {
         private router: Router
     ) {}
 
-    getAllProjects() {
+    getAllProjects(cid) {
         return this.af.list('projects', {
             query: {
                 orderByChild: 'clients_id',
-                equalTo: this.clientsService.cid
+                equalTo: cid
             }
         });
     }

@@ -24,18 +24,21 @@ export class DialogProjectsComponent implements OnInit {
         });
     }
 
-    addProject() {
-        this.projectsService.addProject(
-            this.new_project.value.project_name,
-            this.new_project.value.project_price,
-            this.new_project.value.project_budget,
-            this.new_project.value.project_description,
-        ).then(result => {
+    async addProject() {
+        try {
+            let result = await this.projectsService.addProject(
+                this.new_project.value.project_name,
+                this.new_project.value.project_price,
+                this.new_project.value.project_budget,
+                this.new_project.value.project_description,
+            );
+
             if (typeof result.key !== 'undefined') {
                 this.projectsService.navigateToProjectsTracking(result.key);
             }
-        }).catch(e => {
-            console.log(e);
-        });
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 }
