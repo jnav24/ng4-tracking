@@ -74,7 +74,7 @@ export class SignInService {
       }
 
       this.getUser(user.uid).subscribe(user_data => {
-        user.getToken().then(token => {
+        user.getIdToken().then(token => {
           if (token != user_data.token && !user_data.remember_me) {
             this.logOutAndRedirect();
           }

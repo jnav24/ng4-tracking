@@ -5,17 +5,17 @@
         <md-grid-list class="card-style" cols="3" rowHeight="2:1" gutterSize="21px">
             <md-grid-tile class="daily">
                 <md-grid-tile-header>Total Hours Today</md-grid-tile-header>
-                <span>0</span>
+                <span>{{ today_total | number: '1.2-2' }}</span>
             </md-grid-tile>
 
             <md-grid-tile class="weekly">
                 <md-grid-tile-header>Total Hours This Week</md-grid-tile-header>
-                <span>0</span>
+                <span>{{ week_total | number: '1.2-2' }}</span>
             </md-grid-tile>
 
             <md-grid-tile class="uninvoiced">
                 <md-grid-tile-header>Total Uninvoiced</md-grid-tile-header>
-                <span>$0.00</span>
+                <span>{{ uninvoiced_total | currency: 'USD' : true }}</span>
             </md-grid-tile>
         </md-grid-list>
 

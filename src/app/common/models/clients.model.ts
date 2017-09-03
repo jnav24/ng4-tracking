@@ -12,4 +12,3 @@ export class Clients {
         public contact_info: ClientContact[]
 	) {}
 }
-// logo, company name, description, outstanding

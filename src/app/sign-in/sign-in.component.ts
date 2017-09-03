@@ -90,7 +90,7 @@ export class SignInComponent implements OnInit {
 
     this.signInService.createNewUser(email, password)
         .then(auth => {
-          auth.getToken().then(token => {
+          auth.getIdToken().then(token => {
             this.signInService.addUser(new Users(
                 email,
                 this.sign_up.value.first_name,
@@ -111,7 +111,7 @@ export class SignInComponent implements OnInit {
   login() {
     this.signInService.loginUser(this.log_in.value.email, this.log_in.value.password)
         .then(auth => {
-            auth.getToken().then(token => {
+            auth.getIdToken().then(token => {
               if (this.log_in.value.remember_me) {
                 this.signInService.setRememberMe(auth.uid);
               }

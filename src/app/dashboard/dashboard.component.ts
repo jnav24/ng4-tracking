@@ -3,6 +3,8 @@ import {MdDialog} from '@angular/material';
 import {DialogClientsComponent} from "../dialog-clients/dialog-clients.component";
 import {Clients} from '../common/models/clients.model';
 import {ClientsService} from '../common/services/clients.service';
+import {ProjectsService} from "../common/services/projects.service";
+import {TimeTrackingService} from "../common/services/time-tracking.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +16,15 @@ export class DashboardComponent implements OnInit {
 	client_table_headers: string[] = [];
 	colspan: number[];
 	totalCols: number;
+	today_total = 0.00;
+	week_total = 0.00;
+	uninvoiced_total = 0.00;
 
 	constructor(
 	    private dialog: MdDialog,
     	private clientsService: ClientsService,
+		private projectsService: ProjectsService,
+		private timeTrackingService: TimeTrackingService
 	) {}
 
 	ngOnInit() {
@@ -30,6 +37,20 @@ export class DashboardComponent implements OnInit {
 
         this.clientsService.clients.subscribe(clients => {
             this.clients = clients;
+
+            clients.map(client => {
+            	this.projectsService.getAllProjects(client['$key']).subscribe(projects => {
+            		projects.map(project => {
+						this.timeTrackingService.getAllTimes(project['$key']).subscribe(times => {
+            				times.map(time => {
+            					this.today_total += this.timeTrackingService.getTotalHoursByDay(time.start_time, time.end_time);
+            					this.week_total += this.timeTrackingService.getTotalHoursByWeek(time.start_time, time.end_time);
+            					this.uninvoiced_total += this.timeTrackingService.getTotalUninvoiced(project.rate, time.start_time, time.end_time);
+							});
+						});
+					});
+				});
+			});
         });
 
 		this.colspan = [1,2,3,1];

@@ -88,4 +88,42 @@ export class TimeTrackingService {
 
         return moment.utc(end_time.diff(moment(start)));
     }
+
+    getCurrentDateTime() {
+        return moment(new Date());
+    }
+
+    getTotalHoursByDay(start, end) {
+        const day = this.getCurrentDateTime();
+
+        if (day.format('MMDDYYYY') === moment(start).format('MMDDYYYY')) {
+            const hour = parseInt(this.getDifferenceBetweenTimes(start, end).format('H'),10);
+            const mins = parseInt(this.getDifferenceBetweenTimes(start, end).format('MM'),10)/60;
+            return (hour + mins);
+        }
+
+        return 0.00;
+    }
+
+    getTotalHoursByWeek(start, end) {
+        const day = this.getCurrentDateTime();
+        const end_week = day.format('MMDDYYYY');
+        const start_week = day.subtract(7, 'days').format('MMDDYYYY');
+        const start_time = moment(start).format('MMDDYYYY');
+
+        if (start_time < end_week && start_time > start_week) {
+            const hour = parseInt(this.getDifferenceBetweenTimes(start, end).format('H'),10);
+            const mins = parseInt(this.getDifferenceBetweenTimes(start, end).format('MM'),10)/60;
+            console.log(hour+mins);
+            return (hour + mins);
+        }
+
+        return 0.00;
+    }
+
+    getTotalUninvoiced(rate, start, end) {
+        const hour = parseInt(this.getDifferenceBetweenTimes(start, end).format('H'),10);
+        const mins = parseInt(this.getDifferenceBetweenTimes(start, end).format('MM'),10)/60;
+        return (hour + mins)*rate;
+    }
 }
