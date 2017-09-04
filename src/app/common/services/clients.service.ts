@@ -17,12 +17,10 @@ export class ClientsService {
         private router: Router,
         private af: AngularFireDatabase,
         private signinService: SignInService) {
-        this.getAllClients();
     }
 
-    getAllClients() {
-        const uid = this.signinService.uid;
-        this.clients = this.af.list('clients', {
+    getAllClients(uid) {
+        return this.af.list('clients', {
             query: {
                 orderByChild: 'uid',
                 equalTo: uid

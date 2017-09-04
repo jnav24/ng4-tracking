@@ -5,6 +5,7 @@ import {Clients} from '../common/models/clients.model';
 import {ClientsService} from '../common/services/clients.service';
 import {ProjectsService} from "../common/services/projects.service";
 import {TimeTrackingService} from "../common/services/time-tracking.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit {
 	    private dialog: MdDialog,
     	private clientsService: ClientsService,
 		private projectsService: ProjectsService,
-		private timeTrackingService: TimeTrackingService
+		private timeTrackingService: TimeTrackingService,
+		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
@@ -35,7 +37,7 @@ export class DashboardComponent implements OnInit {
 			'outstanding'
 		];
 
-        this.clientsService.clients.subscribe(clients => {
+        this.clientsService.getAllClients(this.route.snapshot.params['uid']).subscribe(clients => {
             this.clients = clients;
 
             clients.map(client => {
