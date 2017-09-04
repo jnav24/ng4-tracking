@@ -46,10 +46,13 @@ export class SignInComponent implements OnInit {
   isLogin: boolean;
   log_in: FormGroup;
   sign_up: FormGroup;
+  password_reset: FormGroup;
   animateLoginSwitchState: string;
   animateLoginFadeState: string;
   animateSigninSwitchState: string;
   animateSigninFadeState: string;
+  animatePasswordSwitchState: string;
+  animatePasswordFadeState: string;
   url: any;
 
   constructor(
@@ -72,6 +75,8 @@ export class SignInComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]],
         confirm_password: ['', [Validators.required]],
     });
+
+    this.password_reset = this.fb.group({});
 
     this.url = this.route.snapshot.url;
     this.isLogin = (!this.url.length || this.url[0].path === 'login');
@@ -142,5 +147,14 @@ export class SignInComponent implements OnInit {
       this.animateLoginFadeState = 'fade-finish';
       this.animateSigninSwitchState = 'switch-finish';
       this.animateSigninFadeState = 'fade-start';
+      this.animatePasswordSwitchState = 'switch-finish';
+      this.animatePasswordFadeState = 'fade-start';
+  }
+
+  animateToPasswordReset() {
+      this.animateLoginSwitchState = 'switch-finish';
+      this.animateLoginFadeState = 'fade-start';
+      this.animatePasswordSwitchState = 'switch-start';
+      this.animatePasswordFadeState = 'fade-finish';
   }
 }

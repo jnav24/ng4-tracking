@@ -23,11 +23,13 @@
               [ngClass]="{'disabled': !log_in.valid}"
               (click)="login()"
               [disabled]="!log_in.valid">Login</button>
-      <p class="copy">
+      <p class="copy extra">
         <span>
           Need an account?
           <button (click)="animateToSignUp()">Sign Up</button>
         </span>
+        <br>
+        <button (click)="animateToPasswordReset()">Forgot password?</button>
       </p>
     </div>
 
@@ -76,6 +78,19 @@
       <p class="copy">
         <span>
           Already have an account?
+          <button (click)="animateToLogin()">Login</button>
+        </span>
+      </p>
+    </div>
+
+    <div class="form" style="opacity:0.5"
+         [@animateSwitchForm]="animatePasswordSwitchState"
+         [@animateFadeForm]="animatePasswordFadeState"
+         [formGroup]="password_reset">
+      Login Bitches!!
+      <p class="copy">
+        <span>
+          Back to
           <button (click)="animateToLogin()">Login</button>
         </span>
       </p>
