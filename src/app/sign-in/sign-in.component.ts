@@ -47,6 +47,8 @@ export class SignInComponent implements OnInit {
   log_in: FormGroup;
   sign_up: FormGroup;
   password_reset: FormGroup;
+  passwordReset: boolean = false;
+  passwordReset_error: boolean = false;
   animateLoginSwitchState: string;
   animateLoginFadeState: string;
   animateSigninSwitchState: string;
@@ -134,6 +136,22 @@ export class SignInComponent implements OnInit {
   private redirectUser(user) {
       if (user !== null && typeof user.uid !== 'undefined') {
           this.router.navigate(['dashboard', user.uid]);
+      }
+  }
+
+  async resetPassword() {
+      try {
+          await this.signInService.resetPassword(this.password_reset.value.email);
+          this.passwordReset = true;
+
+          setTimeout(() => {
+              this.passwordReset_error = false;
+              this.password_reset.reset();
+              this.passwordReset = false;
+          }, 10000)
+      }
+      catch (err) {
+          this.passwordReset_error = true;
       }
   }
 

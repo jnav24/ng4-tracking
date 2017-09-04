@@ -84,4 +84,8 @@ export class SignInService {
       this.uid = user.uid;
     });
   }
+
+  resetPassword(email) {
+      return this.auth.auth.sendPasswordResetEmail(email);
+  }
 }

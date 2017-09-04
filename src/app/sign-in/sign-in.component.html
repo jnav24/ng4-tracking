@@ -87,23 +87,30 @@
          [@animateSwitchForm]="animatePasswordSwitchState"
          [@animateFadeForm]="animatePasswordFadeState"
          [formGroup]="password_reset">
-      <h2>Reset Your Password</h2>
-      <p class="reset">Enter your email address and we will send you a link to reset your password.</p>
-      <md-input-container class="fw-full">
-        <input mdInput placeholder="Email" formControlName="email">
-      </md-input-container>
+      <div *ngIf="!passwordReset">
+        <div *ngIf="passwordReset_error" class="error">Sorry. Can not find a user with that email.</div>
+        <h2>Reset Your Password</h2>
+        <p class="reset">Enter your email address and we will send you a link to reset your password.</p>
+        <md-input-container class="fw-full">
+          <input mdInput placeholder="Email" formControlName="email">
+        </md-input-container>
 
-      <button md-raised-button class="fw-full"
-              [ngClass]="{'disabled': !password_reset.valid}"
-              [disabled]="!password_reset.valid"
-              (click)="registerUser()">Reset Password</button>
+        <button md-raised-button class="fw-full"
+                [ngClass]="{'disabled': !password_reset.valid}"
+                [disabled]="!password_reset.valid"
+                (click)="resetPassword()">Reset Password</button>
 
-      <p class="copy">
+        <p class="copy">
         <span>
           Back to
           <button (click)="animateToLogin()">Login</button>
         </span>
-      </p>
+        </p>
+      </div>
+
+      <div *ngIf="passwordReset">
+        <p class="reset">Please check your email.</p>
+      </div>
     </div>
   </div>
 </div>
