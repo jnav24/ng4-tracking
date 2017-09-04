@@ -87,7 +87,17 @@
          [@animateSwitchForm]="animatePasswordSwitchState"
          [@animateFadeForm]="animatePasswordFadeState"
          [formGroup]="password_reset">
-      Login Bitches!!
+      <h2>Reset Your Password</h2>
+      <p class="reset">Enter your email address and we will send you a link to reset your password.</p>
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Email" formControlName="email">
+      </md-input-container>
+
+      <button md-raised-button class="fw-full"
+              [ngClass]="{'disabled': !password_reset.valid}"
+              [disabled]="!password_reset.valid"
+              (click)="registerUser()">Reset Password</button>
+
       <p class="copy">
         <span>
           Back to

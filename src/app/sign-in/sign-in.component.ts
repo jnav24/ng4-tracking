@@ -76,7 +76,9 @@ export class SignInComponent implements OnInit {
         confirm_password: ['', [Validators.required]],
     });
 
-    this.password_reset = this.fb.group({});
+    this.password_reset = this.fb.group({
+        email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+    });
 
     this.url = this.route.snapshot.url;
     this.isLogin = (!this.url.length || this.url[0].path === 'login');

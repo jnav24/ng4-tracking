@@ -39,6 +39,15 @@
       background: rgba(#ccc, 0.4);
     }
   }
+
+  h2 {
+    font-weight: 300;
+    text-align: center;
+  }
+  
+  .reset {
+    color: map-get($colors, mid_grey);
+  }
 }
 
 .copy {
