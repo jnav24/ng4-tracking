@@ -114,7 +114,6 @@ export class TimeTrackingService {
         if (start_time < end_week && start_time > start_week) {
             const hour = parseInt(this.getDifferenceBetweenTimes(start, end).format('H'),10);
             const mins = parseInt(this.getDifferenceBetweenTimes(start, end).format('MM'),10)/60;
-            console.log(hour+mins);
             return (hour + mins);
         }
 
