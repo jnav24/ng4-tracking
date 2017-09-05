@@ -36,6 +36,8 @@ import { DialogTrackingComponent } from './dialog-tracking/dialog-tracking.compo
 
 // pipes
 import { CapitalizePipe } from './common/pipes/capitalize.pipe';
+import { DialogAddressComponent } from './dialog-address/dialog-address.component';
+import { DialogContactComponent } from './dialog-contact/dialog-contact.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { CapitalizePipe } from './common/pipes/capitalize.pipe';
     DashboardProjectsComponent,
     DialogProjectsComponent,
     DashboardTrackerComponent,
-    DialogTrackingComponent
+    DialogTrackingComponent,
+    DialogAddressComponent,
+    DialogContactComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -74,6 +78,8 @@ import { CapitalizePipe } from './common/pipes/capitalize.pipe';
     ReactiveFormsModule
   ],
     entryComponents: [
+        DialogAddressComponent,
+        DialogContactComponent,
         DialogClientsComponent,
         DialogProjectsComponent,
         DialogTrackingComponent,

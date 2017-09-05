@@ -3,7 +3,7 @@
 <section class="container">
     <article>
         <div class="col">
-            <div class="card-style logo-drop">
+            <div class="card-style logo-drop text-center">
                 <div class="logo-container">
                     <div class="logo">
                         <img src="assets/images/logo-placeholder-1.png" alt="">
@@ -19,31 +19,33 @@
                     <p>{{ client?.owner }} <md-icon class="edit">mode_edit</md-icon></p>
                 </div>
 
-                <div class="client-info" *ngIf="client?.address">
+                <div class="client-info" *ngIf="client?.address[0].address_1">
                     <md-icon class="adjust-left">place</md-icon>
-                    <p>7655 NW 19th Court</p>
-                    <p>Pembroke Pines, FL 33024</p>
+                    <p>{{ client?.address[0].address_1 }}</p>
+                    <p *ngIf="client?.address[0].address_2">{{ client?.address[0].address_2 }}</p>
+                    <p>{{ client?.address[0].city }}, {{ client?.address[0].state }} {{ client?.address[0].zip }}</p>
                 </div>
 
-                <div class="contactForm" *ngIf="showAddressForm && !client?.address">
-                    Hi address.
-                </div>
-
-                <button md-button *ngIf="!client?.address && !showAddressForm" class="std_button" (click)="toggleAddressForm()">
+                <button md-button *ngIf="!client?.address[0].address_1"
+                        class="std_button"
+                        (click)="openAddressDialog()">
                     Add Address
                 </button>
 
-                <div class="client-info" *ngFor="let contact of client?.contact">
-                    <md-icon class="adjust-left" *ngIf="contact.type == 'email'">local_post_office</md-icon>
-                    <md-icon class="adjust-left" *ngIf="contact.type == 'phone'">local_phone</md-icon>
-                    <p>954 665-9421</p>
+                <div class="client-info"
+                     [ngClass]="{'empty': !contact.info}"
+                     *ngFor="let contact of client?.contact_info">
+                    <div *ngIf="contact.info">
+                        <md-icon class="adjust-left" *ngIf="contact.type == 'email'">local_post_office</md-icon>
+                        <md-icon class="adjust-left" *ngIf="contact.type == 'phone'">local_phone</md-icon>
+                        <p>{{ contact.info }} empty</p>
+                    </div>
                 </div>
 
-                <div class="contactForm" *ngIf="showContactForm && !client?.contact">
-                    Hi form.
-                </div>
-
-                <button md-button *ngIf="!client?.contact && !showContactForm" class="std_button" (click)="toggleContactForm()">Add Contact Info</button>
+                <button md-button *ngIf="!client?.contact_info[0].info" class="std_button"
+                        (click)="openContactDialog()">
+                    Add Contact Info
+                </button>
             </div>
         </div>
 

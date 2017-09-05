@@ -6,6 +6,8 @@ import {Clients} from "../../common/models/clients.model";
 import {MdDialog} from "@angular/material";
 import {DialogProjectsComponent} from "../../dialog-projects/dialog-projects.component";
 import {Projects} from '../../common/models/projects.model';
+import {DialogAddressComponent} from "../../dialog-address/dialog-address.component";
+import {DialogContactComponent} from "../../dialog-contact/dialog-contact.component";
 
 @Component({
     selector: 'app-dashboard-projects',
@@ -15,8 +17,6 @@ import {Projects} from '../../common/models/projects.model';
 export class DashboardProjectsComponent implements OnInit {
     client: Clients;
     projects: Projects[];
-    showAddressForm: boolean = false;
-    showContactForm: boolean = false;
     project_table_headers: string[] = [];
     totalCols: number;
     colspan: number[];
@@ -33,6 +33,7 @@ export class DashboardProjectsComponent implements OnInit {
 
         this.clientsService.getClientDetails(cid).subscribe(client => {
             this.client = client;
+            console.log(client);
         });
 
         this.projectsService.getAllProjects(cid).subscribe(projects => {
@@ -53,12 +54,18 @@ export class DashboardProjectsComponent implements OnInit {
         this.projectsService.navigateToProjectsTracking(id);
     }
 
-    toggleAddressForm() {
-        this.showAddressForm = !this.showAddressForm;
+    openAddressDialog() {
+        this.dialog.open(DialogAddressComponent, {
+            height: '435px',
+            width: '600px'
+        });
     }
 
-    toggleContactForm() {
-        this.showContactForm = !this.showContactForm;
+    openContactDialog() {
+        this.dialog.open(DialogContactComponent, {
+            height: '435px',
+            width: '600px'
+        });
     }
 
     openDialog() {

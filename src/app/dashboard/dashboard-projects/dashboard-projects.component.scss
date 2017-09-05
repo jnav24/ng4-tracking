@@ -64,6 +64,15 @@ p {
     padding-left: 40px;
     position: relative;
 
+    &.empty {
+        margin-top: 0;
+        padding-left: 0;
+
+        &:last-of-type {
+            margin-bottom: 0px;
+        }
+    }
+
     &:last-of-type {
         margin-bottom: 20px;
     }
@@ -87,4 +96,8 @@ p {
 
 .section-heading {
     display: flex;
+}
+
+.std_button {
+    margin-top: 15px;
 }
