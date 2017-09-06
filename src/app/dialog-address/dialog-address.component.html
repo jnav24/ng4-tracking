@@ -1,3 +1,53 @@
-<p>
-  dialog-address works!
-</p>
+<h2 md-dialog-title>Client Address</h2>
+
+<md-dialog-content [formGroup]="address_info">
+    <md-grid-list
+        cols="3"
+        gutterSize="20"
+        rowHeight="70">
+        <md-grid-tile colspan="2">
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Address" formControlName="address">
+            </md-input-container>
+        </md-grid-tile>
+
+        <md-grid-tile colspan="1">
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Suite/Apt" formControlName="apt">
+            </md-input-container>
+        </md-grid-tile>
+    </md-grid-list>
+
+    <md-grid-list
+        cols="3"
+        gutterSize="20"
+        rowHeight="70">
+        <md-grid-tile>
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="City" formControlName="city">
+            </md-input-container>
+        </md-grid-tile>
+
+        <md-grid-tile>
+            <md-select placeholder="State" formControlName="state">
+                <md-option *ngFor="let state of states">{{ state.abbreviation }}</md-option>
+            </md-select>
+        </md-grid-tile>
+
+        <md-grid-tile>
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Zip" formControlName="zip">
+            </md-input-container>
+        </md-grid-tile>
+    </md-grid-list>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cancel</button>
+  <button md-raised-button
+          class="success"
+          [disabled]="!address_info.valid"
+          [ngClass]="{'disabled': !address_info.valid}"
+          [md-dialog-close]="true"
+          (click)="addClient()">Save</button>
+</md-dialog-actions>

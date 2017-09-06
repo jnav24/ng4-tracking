@@ -56,7 +56,7 @@ export class DashboardProjectsComponent implements OnInit {
 
     openAddressDialog() {
         this.dialog.open(DialogAddressComponent, {
-            height: '435px',
+            height: '290px',
             width: '600px'
         });
     }
