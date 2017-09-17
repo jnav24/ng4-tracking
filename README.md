@@ -6,3 +6,5 @@ This was built using:
 * AngularFire 2
 * Angular Material
 * Firebase
+
+Instructions
