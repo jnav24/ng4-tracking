@@ -1,3 +1,26 @@
-<p>
-  dialog-contact works!
-</p>
+<h2 md-dialog-title>Client Contact Info</h2>
+
+<md-dialog-content>
+    <md-grid-list cols="6" gutterSize="20" rowHeight="70">
+        <md-grid-tile colspan="2">
+            <md-select placeholder="Type" class="fw-full">
+                <md-option>Email</md-option>
+                <md-option>Phone</md-option>
+            </md-select>
+        </md-grid-tile>
+
+        <md-grid-tile colspan="4">
+            <md-input-container class="fw-full">
+                <input mdInput placeholder="Number">
+            </md-input-container>
+        </md-grid-tile>
+    </md-grid-list>
+</md-dialog-content>
+
+<md-dialog-actions>
+    <button md-button md-dialog-close>Cancel</button>
+    <button md-raised-button
+          class="success"
+          [md-dialog-close]="true"
+          (click)="addClient()">Save</button>
+</md-dialog-actions>

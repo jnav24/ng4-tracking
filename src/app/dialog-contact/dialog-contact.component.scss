@@ -1,0 +1,6 @@
+@import '../../assets/base/imports';
+
+.mat-dialog-title {
+  color: map-get($colors, mid_grey);
+  font-weight: 300;
+}
