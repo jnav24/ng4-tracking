@@ -13,7 +13,7 @@ export class DialogTrackingComponent implements OnInit {
 
     constructor(
         private dialogRef: MdDialogRef<DialogTrackingComponent>,
-        @Inject(MD_DIALOG_DATA) private data: any,
+        @Inject(MD_DIALOG_DATA) public data: any,
         private form: FormBuilder,
         private timeTrackingService: TimeTrackingService
     ) {}

@@ -24,4 +24,6 @@ export class DialogAddressComponent implements OnInit {
             zip: ['', [Validators.required]],
         });
     }
+
+    addClient() {}
 }
