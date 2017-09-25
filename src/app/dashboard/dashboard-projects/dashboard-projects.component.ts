@@ -63,7 +63,7 @@ export class DashboardProjectsComponent implements OnInit {
 
     openContactDialog() {
         this.dialog.open(DialogContactComponent, {
-            height: '435px',
+            height: '222px',
             width: '600px'
         });
     }

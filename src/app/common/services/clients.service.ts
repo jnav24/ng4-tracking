@@ -58,4 +58,8 @@ export class ClientsService {
             this.cid = cid;
         }
     }
+
+    addAddress(uid, address, apt, city, state, zip) {
+        console.log(uid);
+    }
 }
