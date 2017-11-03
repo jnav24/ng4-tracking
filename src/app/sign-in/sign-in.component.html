@@ -37,49 +37,55 @@
          [@animateSwitchForm]="animateSigninSwitchState"
          [@animateFadeForm]="animateSigninFadeState"
          [formGroup]="sign_up">
-      <div class="error" *ngIf="reg_error.length">
-        {{ reg_error }}
+      <div *ngIf="!disallow_register">
+          <div class="error" *ngIf="reg_error.length">
+            {{ reg_error }}
+          </div>
+          <md-input-container class="fw-full">
+            <input mdInput placeholder="First Name" formControlName="first_name">
+          </md-input-container>
+
+          <md-input-container class="fw-full">
+            <input mdInput placeholder="Last Name" formControlName="last_name">
+          </md-input-container>
+
+          <md-input-container class="fw-full">
+            <input mdInput placeholder="Email" formControlName="email">
+          </md-input-container>
+
+          <md-input-container class="fw-full">
+            <input mdInput placeholder="Password"
+                   type="password"
+                   [formGroup]="sign_up"
+                   validateConfirm
+                   formControlName="password">
+          </md-input-container>
+
+          <md-input-container
+                  class="fw-full">
+            <input mdInput placeholder="Confirm Password"
+                   validateConfirm
+                   type="password"
+                   [formGroup]="sign_up"
+                   name="confirm_password"
+                   formControlName="confirm_password">
+          </md-input-container>
+
+          <button md-raised-button class="fw-full"
+                  [ngClass]="{'disabled': !sign_up.valid}"
+                  [disabled]="!sign_up.valid"
+                  (click)="registerUser()">Sign Up</button>
       </div>
-      <md-input-container class="fw-full">
-        <input mdInput placeholder="First Name" formControlName="first_name">
-      </md-input-container>
-
-      <md-input-container class="fw-full">
-        <input mdInput placeholder="Last Name" formControlName="last_name">
-      </md-input-container>
-
-      <md-input-container class="fw-full">
-        <input mdInput placeholder="Email" formControlName="email">
-      </md-input-container>
-
-      <md-input-container class="fw-full">
-        <input mdInput placeholder="Password"
-               type="password"
-               [formGroup]="sign_up"
-               validateConfirm
-               formControlName="password">
-      </md-input-container>
-
-      <md-input-container
-              class="fw-full">
-        <input mdInput placeholder="Confirm Password"
-               validateConfirm
-               type="password"
-               [formGroup]="sign_up"
-               name="confirm_password"
-               formControlName="confirm_password">
-      </md-input-container>
-
-      <button md-raised-button class="fw-full"
-              [ngClass]="{'disabled': !sign_up.valid}"
-              [disabled]="!sign_up.valid"
-              (click)="registerUser()">Sign Up</button>
+      <div *ngIf="disallow_register" class="text-center">
+          <h2>Sorry.</h2>
+          <p>Registration is closed.</p>
+      </div>
 
       <p class="copy">
-        <span>
-          Already have an account?
-          <button (click)="animateToLogin()">Login</button>
-        </span>
+          <span>
+            Already have an account?
+            <button (click)="animateToLogin()">Login</button>
+          </span>
       </p>
     </div>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { SignInService } from './sign-in.service';
+import {InDevelopService} from '../common/services/in-develop.service';
 import { Users } from '../common/models/users.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {trigger, state, style, animate, transition} from '@angular/animations';
@@ -56,19 +57,26 @@ export class SignInComponent implements OnInit {
   animatePasswordSwitchState: string;
   animatePasswordFadeState: string;
   url: any;
+  disallow_register: boolean;
 
   constructor(
       private route: ActivatedRoute,
       private signInService: SignInService,
+      private inDevelopService: InDevelopService,
       private router: Router,
       private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.log_in = this.fb.group({
-        email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
-        password: ['', [Validators.required]],
-        remember_me: ['', []]
-    });
+      this.inDevelopService.getRegistration()
+          .once('value', (snap) => {
+              this.disallow_register = snap.val();
+          });
+
+      this.log_in = this.fb.group({
+          email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+          password: ['', [Validators.required]],
+          remember_me: ['', []]
+      });
 
     this.sign_up = this.fb.group({
         first_name: ['', [Validators.required, Validators.minLength(3)]],

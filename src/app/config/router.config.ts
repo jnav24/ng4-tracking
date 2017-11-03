@@ -5,6 +5,7 @@ import {DashboardProjectsComponent} from "../dashboard/dashboard-projects/dashbo
 import {DashboardTrackerComponent} from "../dashboard/dashboard-tracker/dashboard-tracker.component";
 
 export const RouterConfig: Route[] = [
+	{ path: '', component: SignInComponent },
 	{ path: 'login', component: SignInComponent },
 	{ path: 'register', component: SignInComponent },
 	{ 
@@ -15,6 +16,5 @@ export const RouterConfig: Route[] = [
 			{ path: ':uid/:cid/:pid', component: DashboardTrackerComponent }
 		]
 	},
-	{ path: '', redirectTo: 'login' },
 	{ path: '**', redirectTo: 'login' },
 ];

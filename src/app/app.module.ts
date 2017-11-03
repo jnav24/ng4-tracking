@@ -22,6 +22,7 @@ import { SignInService } from './sign-in/sign-in.service';
 import { ClientsService } from './common/services/clients.service';
 import {ProjectsService} from "./common/services/projects.service";
 import {TimeTrackingService} from "./common/services/time-tracking.service";
+import {InDevelopService} from './common/services/in-develop.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -90,7 +91,8 @@ import { DialogContactComponent } from './dialog-contact/dialog-contact.componen
     SignInService,
     ClientsService,
     ProjectsService,
-    TimeTrackingService
+    TimeTrackingService,
+    InDevelopService
   ],
   bootstrap: [AppComponent]
 })
