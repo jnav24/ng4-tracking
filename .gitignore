@@ -42,3 +42,5 @@ testem.log
 Thumbs.db
 
 src/app/config/firebase.config.ts
+firebase.json
+.firebaserc
