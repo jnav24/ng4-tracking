@@ -112,12 +112,12 @@ export class DashboardTrackerComponent implements OnInit {
                 mode: 'new',
                 time: new TimeTracking(this.projectsService.pid, todayD, todayD, '', '')
             },
-            height: '365px',
+            height: '435px',
             width: '600px'
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result) {
+            if (result.data == 'new') {
                 this.tid = this.trackings[0].times[0].$key;
                 this.setActiveState();
             }

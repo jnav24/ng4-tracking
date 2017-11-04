@@ -18,13 +18,13 @@ export class TimeTrackingService {
         });
     }
 
-    addTime(title, time, description, pid) {
+    addTime(title, start_time, end_time, description, pid) {
         return this.af.database.ref('times')
             .push(
                 new TimeTracking(
                     pid,
-                    time,
-                    time,
+                    start_time,
+                    end_time,
                     description,
                     title
                 )

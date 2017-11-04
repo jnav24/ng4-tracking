@@ -1,4 +1,5 @@
 <h2 md-dialog-title>New Time Entry</h2>
+<button (click)="toggleEdit()">Test</button>
 
 <md-dialog-content [formGroup]="new_time">
     <md-input-container class="fw-full">
@@ -9,7 +10,7 @@
         <textarea mdInput class="description" placeholder="Description" formControlName="time_description" [(ngModel)]="data.time.description"></textarea>
     </md-input-container>
 
-    <md-grid-list *ngIf="data.mode === 'edit'" cols="2" rowHeight="70" gutterSize="25">
+    <md-grid-list [hidden]="data.mode !== 'edit'" cols="2" rowHeight="70" gutterSize="25">
         <md-grid-tile>
             <md-input-container class="fw-full">
                 <input mdInput placeholder="Start Time" formControlName="time_start" [ngModel]="data.time.start_time | amDateFormat:'HH:mm'">
